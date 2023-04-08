@@ -119,10 +119,10 @@ const List = () => {
             <button onClick={handleClick}>Search</button>
           </div>
           <div className="listResult">
-            {data
-              ? data &&
-                data.map((item) => <SearchItem item={item} key={item._id} />)
-              : "Loading..."}
+            {data &&
+              Array.isArray(data) &&
+              data.map((item) => <SearchItem item={item} key={item._id} />)}
+            {!data && "Loading..."}
           </div>
         </div>
       </div>
