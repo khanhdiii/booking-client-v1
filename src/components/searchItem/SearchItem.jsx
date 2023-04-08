@@ -5,32 +5,34 @@ const SearchItem = (props) => {
   const item = props.item;
   return (
     <div className="searchItem">
-      <img src={item.photos[0]} alt="" className="siImg" />
+      <img src={item?.photos?.[0] || undefined} alt="" className="siImg" />
       <div className="siDesc">
-        <h1 className="siTitle">{item.title}</h1>
+        <h1 className="siTitle">{item.name}</h1>
         <span className="siDistance">{item.distance}M from center</span>
         <span className="siTaxiOp">Free airport taxi</span>
         <span className="siSubtitle">
           Studio Apartment with Air conditioning
         </span>
-        <span className="siFeatures">
-          Entire studio • 1 bathroom • 21m² 1 full bed
-        </span>
+        <span className="siFeatures">{item.desc}</span>
         <span className="siCancelOp">Free cancellation </span>
         <span className="siCancelOpSubtitle">
           You can cancel later, so lock in this great price today!
         </span>
       </div>
       <div className="siDetails">
-        <div className="siRating">
-          <span>Excellent</span>
-          <button>8.9</button>
-        </div>
+        {item.rating && (
+          <div className="siRating">
+            <span>Excellent</span>
+            <button>{item.rating}</button>
+          </div>
+        )}
         <div className="siDetailTexts">
-          <span className="siPrice">{item.cheapestPrice}</span>
+          <span className="siPrice">${item.cheapestPrice}</span>
           <span className="siTaxOp">Includes taxes and fees</span>
-          <Link to={`/hotels/${item._id}`}></Link>
-          <button className="siCheckButton">See availability</button>
+
+          <button className="siCheckButton">
+            <Link to={`/hotels/${item._id}`}>See availability</Link>
+          </button>
         </div>
       </div>
     </div>

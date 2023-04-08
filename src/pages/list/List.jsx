@@ -10,16 +10,26 @@ import useFetch from "../../hooks/useFetch";
 
 const List = () => {
   const location = useLocation();
+  const state = location.state || {
+    destination: "",
+    date: [],
+    options: { adult: 1, children: 0, room: 1 },
+  };
   const [destination, setDestination] = useState(location.state.destination);
   const [date, setDate] = useState(location.state.date);
   const [openDate, setOpenDate] = useState(false);
   const [options, setOptions] = useState(location.state.options);
 
-  const [min, setMin] = useState(0);
-  const [max, setMax] = useState(0);
+  const [min, setMin] = useState(undefined);
+  const [max, setMax] = useState(undefined);
   const { data, loading, error, reFetch } = useFetch(
-    `/hotels?city=${destination}}`
+    `/hotels?city=${destination}&min=${min || 0}&max=${max || 999}`
   );
+
+  const handleClick = () => {
+    reFetch();
+    console.log("a", location.state.destination);
+  };
 
   return (
     <div>
@@ -106,11 +116,12 @@ const List = () => {
                 </div>
               </div>
             </div>
+            <button onClick={handleClick}>Search</button>
           </div>
           <div className="listResult">
             {data
               ? data.map((item) => <SearchItem item={item} key={item._id} />)
-              : "loading..."}
+              : "Loading..."}
           </div>
         </div>
       </div>
