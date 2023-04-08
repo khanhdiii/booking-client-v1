@@ -120,7 +120,8 @@ const List = () => {
           </div>
           <div className="listResult">
             {data
-              ? data.map((item) => <SearchItem item={item} key={item._id} />)
+              ? data &&
+                data.map((item) => <SearchItem item={item} key={item._id} />)
               : "Loading..."}
           </div>
         </div>
