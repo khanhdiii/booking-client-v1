@@ -11,8 +11,11 @@ const Navbar = () => {
   return (
     <div className="navbar">
       <div className="navContainer">
-        <Link to="/" style={{ color: "red", textDecoration: "none" }} />
-        <span className="logo">Booking</span>
+        <span className="logo">
+          <Link to="/">
+            <h2 className="titlePage">Booking</h2>
+          </Link>
+        </span>
         {isAuthRoute && (
           <div className="navItems">
             <button className="navButton">Register</button>

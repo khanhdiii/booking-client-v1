@@ -16,11 +16,11 @@ import { useLocation } from "react-router-dom";
 
 const Hotel = () => {
   const location = useLocation();
-  const id = location.split("/"[2]);
+  const id = location.pathname.split("/")[2];
   const [slideNumber, setSlideNumber] = useState(0);
   const [open, setOpen] = useState(false);
 
-  const { data, loading, error } = useFetch(`/hotels/${id}`);
+  const { data, loading, error } = useFetch(`/hotels/find/${id}`);
   const photos = [
     {
       src: "https://cf.bstatic.com/xdata/images/hotel/max1280x900/261707778.jpg?k=56ba0babbcbbfeb3d3e911728831dcbc390ed2cb16c51d88159f82bf751d04c6&o=&hp=1",
@@ -81,7 +81,7 @@ const Hotel = () => {
               />
               <div className="sliderWrapper">
                 <img
-                  src={photos[slideNumber].src}
+                  src={data?.photos[slideNumber]}
                   alt=""
                   className="sliderImg"
                 />
@@ -108,11 +108,11 @@ const Hotel = () => {
               airport taxi
             </span>
             <div className="hotelImages">
-              {photos.map((photo, i) => (
+              {data.photos?.map((photo, i) => (
                 <div className="hotelImgWrapper" key={i}>
                   <img
                     onClick={() => handleOpen(i)}
-                    src={photo.src}
+                    src={photo}
                     alt=""
                     className="hotelImg"
                   />
@@ -121,21 +121,8 @@ const Hotel = () => {
             </div>
             <div className="hotelDetails">
               <div className="hotelDetailsTexts">
-                <h1 className="hotelTitle">cheapestPrice</h1>
-                <p className="hotelDesc">
-                  Located a 5-minute walk from St. Florian's Gate in Krakow,
-                  Tower Street Apartments has accommodations with air
-                  conditioning and free WiFi. The units come with hardwood
-                  floors and feature a fully equipped kitchenette with a
-                  microwave, a flat-screen TV, and a private bathroom with
-                  shower and a hairdryer. A fridge is also offered, as well as
-                  an electric tea pot and a coffee machine. Popular points of
-                  interest near the apartment include Cloth Hall, Main Market
-                  Square and Town Hall Tower. The nearest airport is John Paul
-                  II International Kraków–Balice, 16.1 km from Tower Street
-                  Apartments, and the property offers a paid airport shuttle
-                  service.
-                </p>
+                <h1 className="hotelTitle">{data.title}</h1>
+                <p className="hotelDesc">{data.desc}</p>
               </div>
               <div className="hotelDetailsPrice">
                 <h1>Perfect for a 9-night stay!</h1>
