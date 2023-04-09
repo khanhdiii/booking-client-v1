@@ -10,8 +10,8 @@ const useFetch = (url) => {
         const fetchData = async () => {
             setLoading(true)
             try {
-                // const res = await axios.get(`https://bookingapi-pzgz.onrender.com/api` + url);
-                const res = await axios.get(url);
+                const res = await axios.get(`https://bookingapiv1.onrender.com/api` + url);
+                // const res = await axios.get(url);
                 setData(res.data)
             }
             catch (err) {
@@ -26,8 +26,8 @@ const useFetch = (url) => {
     const reFetch = async () => {
         setLoading(true)
         try {
-            // const res = await axios.get(`https://bookingapi-pzgz.onrender.com/api` + url);
-            const res = await axios.get(url);
+            const res = await axios.get(`https://bookingapiv1.onrender.com/api` + url);
+            // const res = await axios.get(url);
             setData(res.data)
         }
         catch (err) {
