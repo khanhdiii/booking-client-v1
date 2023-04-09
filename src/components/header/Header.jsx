@@ -66,7 +66,7 @@ const Header = ({ type }) => {
           </div>
           <div className="headerListItem">
             <FontAwesomeIcon icon={faPlane} />
-            <span>Flights</span>
+            <span>Test</span>
           </div>
         </div>
         {type !== "list" && (
@@ -86,7 +86,7 @@ const Header = ({ type }) => {
                 <FontAwesomeIcon icon={faBed} className="headerIcon" />
                 <input
                   type="text"
-                  placeholder="Where are you going?"
+                  placeholder="Where are you want"
                   className="headerSearchInput"
                   onChange={(e) => setDestination(e.target.value)}
                 />

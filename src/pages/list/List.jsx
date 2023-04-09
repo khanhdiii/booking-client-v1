@@ -6,8 +6,11 @@ import { format } from "date-fns";
 import { DateRange } from "react-date-range";
 import SearchItem from "../../components/searchItem/SearchItem";
 import useFetch from "../../hooks/useFetch";
+import { useLocation } from "react-router-dom";
 
 const List = () => {
+  const location = useLocation();
+  const [destination, setDestination] = useState(location.state.destination);
   const [city, setCity] = useState("");
   const [date, setDate] = useState(location.state.date);
   const [openDate, setOpenDate] = useState(false);
@@ -16,12 +19,11 @@ const List = () => {
   const [min, setMin] = useState(undefined);
   const [max, setMax] = useState(undefined);
   const { data, loading, error, reFetch } = useFetch(
-    `/hotels?city=${city}&min=${min || 0}&max=${max || 999}`
+    `/hotels?city=${destination}&min=${min || 0}&max=${max || 999}`
   );
 
   const handleClick = () => {
     reFetch();
-    console.log("a", location.state.destination);
   };
 
   return (
