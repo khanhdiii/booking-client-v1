@@ -93,7 +93,7 @@ const Header = ({ type }) => {
                 <FontAwesomeIcon icon={faBed} className="headerIcon" />
                 <input
                   type="text"
-                  placeholder="Where are you want?"
+                  placeholder="london?"
                   className="headerSearchInput"
                   onChange={(e) => setDestination(e.target.value)}
                 />
