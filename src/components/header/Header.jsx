@@ -18,6 +18,9 @@ import { useContext } from "react";
 import { SearchContext } from "../../context/SearchContex";
 
 const Header = ({ type }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const path = location.pathname;
   const [destination, setDestination] = useState("");
   const [openDate, setOpenDate] = useState(false);
   const [dates, setDates] = useState([
@@ -34,12 +37,9 @@ const Header = ({ type }) => {
     room: 1,
   });
 
-  const navigate = useNavigate();
-  const location = useLocation();
-  const path = location.pathname;
-
   const isAuthRoute =
     path.indexOf("signin") > -1 || path.indexOf("signup") > -1;
+
   const handleOption = (name, operation) => {
     setOptions((prev) => {
       return {
