@@ -13,9 +13,11 @@ import { useState } from "react";
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { format } from "date-fns";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { SearchContext } from "../../context/SearchContex";
+import SigninForm from "../Auth/Signin";
+import useFetch from "../../hooks/useFetch";
 
 const Header = ({ type }) => {
   const navigate = useNavigate();
@@ -59,6 +61,10 @@ const Header = ({ type }) => {
     navigate("/hotels", { state: { destination, dates, options } });
   };
 
+  const HandleMoveSignin = (e) => {
+    navigate(`/signin`);
+  };
+
   return (
     <div className="header">
       <div
@@ -85,9 +91,9 @@ const Header = ({ type }) => {
               Get rewarded for your travels – unlock instant savings of 10% or
               more with a free booking account
             </p>
-            {isAuthRoute && (
-              <button className="headerBtn">Sign in / Register</button>
-            )}
+            <button className="headerBtn" onClick={HandleMoveSignin}>
+              Sign in / Register
+            </button>
             <div className="headerSearch">
               <div className="headerSearchItem">
                 <FontAwesomeIcon icon={faBed} className="headerIcon" />

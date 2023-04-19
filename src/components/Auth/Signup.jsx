@@ -30,7 +30,7 @@ const SignupForm = () => {
   return (
     <section className="signup-form-container">
       <h2 className="form-title">Create an Account</h2>
-      <form className="signup-form" onSubmit={handleSubmit}>
+      <form className="signup-form">
         <div className="form-group">
           <label htmlFor="name">Username</label>
           <input

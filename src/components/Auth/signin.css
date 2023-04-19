@@ -1,23 +1,38 @@
+.signin-form-container {
+  background-color: #f6f7f8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px 0;
+}
+
+.form-title {
+  font-size: 28px;
+  font-weight: bold;
+  color: #1877f2;
+  margin-bottom: 20px;
+}
+
 form {
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  align-items: center;
   background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.2);
-  max-width: 400px;
-  margin: 0 auto;
+  padding: 50px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  width: 500px;
+  margin-bottom: 30px;
 }
 
-h1 {
-  font-size: 36px;
-  font-weight: 700;
-  text-align: center;
+.form-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
   margin-bottom: 20px;
-  color: #1877f2;
 }
 
-label {
+.label {
   font-size: 14px;
   font-weight: 600;
   color: #1877f2;
@@ -33,7 +48,7 @@ input[type="password"] {
   box-sizing: border-box;
 }
 
-button[type="submit"] {
+.btn_submit[type="submit"] {
   background-color: #1877f2;
   color: #fff;
   border: none;
@@ -43,9 +58,10 @@ button[type="submit"] {
   border-radius: 5px;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
+  margin-top: 5%;
 }
 
-button[type="submit"]:hover {
+.btn_submit[type="submit"]:hover {
   background-color: #3b5998;
 }
 
@@ -62,11 +78,13 @@ button {
 }
 
 button:hover {
-  text-decoration: underline;
+  text-decoration: none;
 }
 
-span {
+.error {
   font-size: 14px;
   font-weight: 600;
-  color: #65676b;
+  color: #ff0000;
+  text-align: center;
+  padding-top: 3%;
 }
