@@ -48,6 +48,10 @@ input {
   background-color: #f0f2f5;
   margin-top: 5px;
 }
+.error-message {
+  color: red;
+  margin-top: 10px;
+}
 
 input:focus {
   outline: none;

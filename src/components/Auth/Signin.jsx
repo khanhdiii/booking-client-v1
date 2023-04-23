@@ -9,8 +9,7 @@ const SigninForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const { user, loading, error, dispatch } = useContext(AuthContext);
-  // const { data: ata, loading, error } = useFetch(`/auth/signin`);
+  const { loading, error, dispatch } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -25,11 +24,13 @@ const SigninForm = () => {
           password,
         }
       );
+      //Save data user in localStorage
+      localStorage.setItem("user", JSON.stringify(res.data));
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
       navigate("/");
+      window.location.reload();
     } catch (err) {
       dispatch({ type: "LOGIN_FAIL", payload: err });
-      console.log("Errr", err);
     }
   };
 
@@ -66,16 +67,23 @@ const SigninForm = () => {
             required
           />
 
-          <button className="btn_submit" type="submit" onClick={handleSignin}>
+          <button
+            disabled={loading}
+            className="btn_submit"
+            type="submit"
+            onClick={handleSignin}
+          >
             Sign In
           </button>
+
+          <span>
+            Not have account,{" "}
+            <button onClick={() => navigate("/signup")}>create here</button>
+          </span>
+
           {error && (
             <span className="error">{error.response.data.message}</span>
           )}
-          {/* <span>
-        Not have account,{" "}
-        <button onClick={() => navigate("/signup")}>create here</button>
-      </span> */}
         </div>
       </form>
     </div>
