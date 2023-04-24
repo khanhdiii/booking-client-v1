@@ -8,10 +8,21 @@ import useFetch from "../../hooks/useFetch";
 const SigninForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [usernameError, setUsernameError] = useState("");
 
   const { loading, error, dispatch } = useContext(AuthContext);
 
   const navigate = useNavigate();
+
+  const handleUsernameChange = (e) => {
+    const value = e.target.value;
+    setUsername(value);
+    if (value.length < 5) {
+      setUsernameError("Username must be at least 5 characters long");
+    } else {
+      setUsernameError("");
+    }
+  };
 
   const handleSignin = async (e) => {
     e.preventDefault();
@@ -43,15 +54,16 @@ const SigninForm = () => {
             Username
           </label>
           <input
-            className="input_username"
             type="text"
             id="username"
-            placeholder="username"
             name="username"
             value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
+            onChange={handleUsernameChange} // Gọi hàm handleUsernameChange
+            placeholder="Username"
           />
+          {usernameError && (
+            <span className="error-message">{usernameError}</span>
+          )}
 
           <label htmlFor="password" className="label_password">
             Password

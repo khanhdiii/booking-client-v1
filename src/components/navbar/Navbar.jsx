@@ -30,7 +30,10 @@ const Navbar = () => {
         </span>
         {user ? (
           <div className="navItems">
-            <span className="navUsername">{user.username}</span>
+            <span className="navUsername">
+              Have a good day <p>{user.username}</p>
+            </span>
+
             <button
               className="navButton"
               onClick={() => {

@@ -39,9 +39,6 @@ const Header = ({ type }) => {
     room: 1,
   });
 
-  const isAuthRoute =
-    path.indexOf("signin") > -1 || path.indexOf("signup") > -1;
-
   const handleOption = (name, operation) => {
     setOptions((prev) => {
       return {
