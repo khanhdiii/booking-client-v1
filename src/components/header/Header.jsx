@@ -18,11 +18,14 @@ import { useContext } from "react";
 import { SearchContext } from "../../context/SearchContex";
 import SigninForm from "../Auth/Signin";
 import useFetch from "../../hooks/useFetch";
+import { AuthContext } from "../../context/AuthContext";
 
 const Header = ({ type }) => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { user, setUser } = useContext(AuthContext);
   const path = location.pathname;
+
   const [destination, setDestination] = useState("");
   const [openDate, setOpenDate] = useState(false);
   const [dates, setDates] = useState([
@@ -88,9 +91,13 @@ const Header = ({ type }) => {
               Get rewarded for your travels – unlock instant savings of 10% or
               more with a free booking account
             </p>
-            <button className="headerBtn" onClick={HandleMoveSignin}>
-              Sign in / Register
-            </button>
+            {user ? (
+              "Good a nice trip!!!!"
+            ) : (
+              <button className="headerBtn" onClick={HandleMoveSignin}>
+                Sign in / Register
+              </button>
+            )}
             <div className="headerSearch">
               <div className="headerSearchItem">
                 <FontAwesomeIcon icon={faBed} className="headerIcon" />
