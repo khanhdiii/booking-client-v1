@@ -97,8 +97,11 @@ const SignupForm = () => {
       <h2 className="form-title">Create an Account</h2>
       <form className="signup-form" onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="name">Username</label>
+          <label className="label" htmlFor="name">
+            Username
+          </label>
           <input
+            className="input"
             type="text"
             id="username"
             name="username"
@@ -112,8 +115,11 @@ const SignupForm = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="email">Email address</label>
+          <label className="label" htmlFor="email">
+            Email address
+          </label>
           <input
+            className="input"
             type="email"
             id="email"
             name="email"
@@ -125,8 +131,11 @@ const SignupForm = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="password">Password</label>
+          <label className="label" htmlFor="password">
+            Password
+          </label>
           <input
+            className="input"
             type="password"
             id="password"
             name="password"
@@ -140,8 +149,11 @@ const SignupForm = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="confirmedpassword">Confirm Password</label>
+          <label className="label" htmlFor="confirmedpassword">
+            Confirm Password
+          </label>
           <input
+            className="input"
             type="password"
             id="confirmedpassword"
             name="confirmedpassword"
