@@ -2,8 +2,8 @@ import { useContext, useState } from "react";
 import "./signin.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../../context/AuthContext";
-import useFetch from "../../hooks/useFetch";
+import { AuthContext } from "../context/AuthContext";
+import useFetch from "../hooks/useFetch";
 
 const SigninForm = () => {
   const [username, setUsername] = useState("");
@@ -28,6 +28,16 @@ const SigninForm = () => {
     e.preventDefault();
     dispatch({ type: "LOGIN" });
     try {
+      const token = localStorage.getItem("access_token");
+
+      const response = await axios.get(
+        "https://bookingapiv1.onrender.com/api/users",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       const res = await axios.post(
         "https://bookingapiv1.onrender.com/api/auth/signin",
         {
@@ -36,8 +46,8 @@ const SigninForm = () => {
         }
       );
       //Save data user in localStorage
-      localStorage.setItem("user", JSON.stringify(res.data));
-      dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
+      localStorage.setItem("user", JSON.stringify(res.data.details));
+      dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
       navigate("/");
       window.location.reload();
     } catch (err) {
