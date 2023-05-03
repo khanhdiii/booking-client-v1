@@ -8,13 +8,13 @@ const Navbar = () => {
   const path = location.pathname;
   const navigate = useNavigate();
 
-  const { user, setUser } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   const handleLogout = () => {
     // Xóa dữ liệu user trong localStorage
     localStorage.removeItem("user");
     // Set lại user trong AuthContext thành null
-    setUser(null);
+
     // Navigate đến trang đăng nhập sau khi logout
     navigate("/signin");
     window.location.reload();

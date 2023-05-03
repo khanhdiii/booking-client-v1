@@ -36,8 +36,8 @@ const SigninForm = () => {
         }
       );
       //Save data user in localStorage
-      localStorage.setItem("user", JSON.stringify(res.data));
-      dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
+      localStorage.setItem("user", JSON.stringify(res.data.details));
+      dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
       navigate("/");
       window.location.reload();
     } catch (err) {
