@@ -31,7 +31,7 @@ const Navbar = () => {
         {user ? (
           <div className="navItems">
             <span className="navUsername">
-              Have a good day <p>{user.username}</p>
+              Have a good day <p>{user && user.username}</p>
             </span>
 
             <button
