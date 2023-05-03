@@ -23,8 +23,8 @@ import { AuthContext } from "../../context/AuthContext";
 const Header = ({ type }) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { user, setUser } = useContext(AuthContext);
   const path = location.pathname;
+  const { user, setUser } = useContext(AuthContext);
 
   const [destination, setDestination] = useState("");
   const [openDate, setOpenDate] = useState(false);
