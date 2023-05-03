@@ -28,15 +28,6 @@ const SigninForm = () => {
     dispatch({ type: "LOGIN" });
     try {
       const token = localStorage.getItem("access_token");
-
-      const response = await axios.get(
-        "https://bookingapiv1.onrender.com/api/users",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
       const res = await axios.post(
         "https://bookingapiv1.onrender.com/api/auth/signin",
         {
@@ -45,8 +36,8 @@ const SigninForm = () => {
         }
       );
       //Save data user in localStorage
-      localStorage.setItem("user", JSON.stringify(res.data.details));
-      dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
+      localStorage.setItem("user", JSON.stringify(res.data));
+      dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
       navigate("/");
       window.location.reload();
     } catch (err) {
