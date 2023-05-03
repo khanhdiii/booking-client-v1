@@ -75,14 +75,11 @@ const SignupForm = () => {
     }
 
     try {
-      const res = await axios.post(
-        "https://bookingapiv1.onrender.com/api/auth/signup",
-        {
-          email,
-          username,
-          password,
-        }
-      );
+      const res = await axios.post("/auth/signup", {
+        email,
+        username,
+        password,
+      });
       if (res) {
         alert("Created Account");
         navigate("/signin");
