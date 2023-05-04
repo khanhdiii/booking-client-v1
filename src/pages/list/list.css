@@ -21,29 +21,29 @@
   height: max-content;
 }
 
-.lsTitle{
+.lsTitle {
   font-size: 20px;
   color: #555;
   margin-bottom: 10px;
 }
 
-.lsItem{
+.lsItem {
   display: flex;
   flex-direction: column;
   gap: 5px;
   margin-bottom: 10px;
 }
 
-.lsItem>label{
+.lsItem > label {
   font-size: 12px;
 }
 
-.lsItem>input{
+.lsItem > input {
   height: 30px;
   border: none;
   padding: 5px;
 }
-.lsItem>span{
+.lsItem > span {
   height: 30px;
   padding: 5px;
   background-color: white;
@@ -52,11 +52,11 @@
   cursor: pointer;
 }
 
-.lsOptions{
+.lsOptions {
   padding: 10px;
 }
 
-.lsOptionItem{
+.lsOptionItem {
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
@@ -64,11 +64,11 @@
   font-size: 12px;
 }
 
-.lsOptionInput{
+.lsOptionInput {
   width: 50px;
 }
 
-.listSearch>button{
+.listSearch > button {
   padding: 10px;
   background-color: #0071c2;
   color: white;
@@ -80,4 +80,38 @@
 
 .listResult {
   flex: 3;
+}
+
+.select-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.select-wrapper select {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.select-wrapper select:focus {
+  outline: none;
+  border-color: #38d39f;
+}
+
+.select-wrapper:before {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  width: 0;
+  height: 0;
+  margin-top: -3px;
+  border-width: 6px;
+  border-style: solid;
+  border-color: #000 transparent transparent transparent;
 }

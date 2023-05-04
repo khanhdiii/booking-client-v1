@@ -15,6 +15,7 @@ const List = () => {
   const [dates, setDates] = useState(location.state.dates);
   const [openDate, setOpenDate] = useState(false);
   const [options, setOptions] = useState(location.state.options);
+  const [showOptions, setShowOptions] = useState(false);
 
   const [min, setMin] = useState(undefined);
   const [max, setMax] = useState(undefined);
@@ -25,7 +26,69 @@ const List = () => {
   const handleClick = () => {
     reFetch();
   };
-
+  const destinationOptions = [
+    "An Giang",
+    "Bà Rịa - Vũng Tàu",
+    "Bắc Giang",
+    "Bắc Kạn",
+    "Bạc Liêu",
+    "Bắc Ninh",
+    "Bến Tre",
+    "Bình Định",
+    "Bình Dương",
+    "Bình Phước",
+    "Bình Thuận",
+    "Cà Mau",
+    "Cần Thơ",
+    "Cao Bằng",
+    "Đà Nẵng",
+    "Đắk Lắk",
+    "Đắk Nông",
+    "Điện Biên",
+    "Đồng Nai",
+    "Đồng Tháp",
+    "Gia Lai",
+    "Hà Giang",
+    "Hà Nam",
+    "Hà Nội",
+    "Hà Tĩnh",
+    "Hải Dương",
+    "Hải Phòng",
+    "Hậu Giang",
+    "Hòa Bình",
+    "Hưng Yên",
+    "Khánh Hòa",
+    "Kiên Giang",
+    "Kon Tum",
+    "Lai Châu",
+    "Lâm Đồng",
+    "Lạng Sơn",
+    "Lào Cai",
+    "Long An",
+    "Nam Định",
+    "Nghệ An",
+    "Ninh Bình",
+    "Ninh Thuận",
+    "Phú Thọ",
+    "Quảng Bình",
+    "Quảng Nam",
+    "Quảng Ngãi",
+    "Quảng Ninh",
+    "Quảng Trị",
+    "Sóc Trăng",
+    "Sơn La",
+    "Tây Ninh",
+    "Thái Bình",
+    "Thái Nguyên",
+    "Thanh Hóa",
+    "Thừa Thiên Huế",
+    "Tiền Giang",
+    "Trà Vinh",
+    "Tuyên Quang",
+    "Vĩnh Long",
+    "Vĩnh Phúc",
+    "Yên Bái",
+  ];
   return (
     <div>
       <Navbar />
@@ -36,13 +99,27 @@ const List = () => {
             <h1 className="lsTitle">Search</h1>
             <div className="lsItem">
               <label>Destination</label>
-              <input
+              {/* <input
                 placeholder={destination}
                 onChange={(item) => setDestination(item.target.value)}
                 value={destination}
                 type="text"
-              />
+              /> */}
+              <div className="select-wrapper">
+                <select
+                  value={destination}
+                  onChange={(e) => setDestination(e.target.value)}
+                  onClick={() => setShowOptions(true)}
+                >
+                  {destinationOptions.map((option) => (
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
+
             <div className="lsItem">
               <label>Check-in Date</label>
               <span onClick={() => setOpenDate(!openDate)}>{`${format(

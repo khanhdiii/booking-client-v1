@@ -11,11 +11,10 @@ const Navbar = () => {
   const { user } = useContext(AuthContext);
 
   const handleLogout = () => {
-    // Xóa dữ liệu user trong localStorage
+    // Remove data user in localStorage
     localStorage.removeItem("user");
-    // Set lại user trong AuthContext thành null
 
-    // Navigate đến trang đăng nhập sau khi logout
+    // Navigate to signin
     navigate("/signin");
     window.location.reload();
   };
