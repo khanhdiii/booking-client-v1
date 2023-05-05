@@ -7,6 +7,7 @@ import { DateRange } from "react-date-range";
 import SearchItem from "../../components/searchItem/SearchItem";
 import useFetch from "../../hooks/useFetch";
 import { useLocation } from "react-router-dom";
+import Loading from "../loading/Loading";
 
 const List = () => {
   const location = useLocation();
@@ -194,7 +195,7 @@ const List = () => {
             {data &&
               Array.isArray(data) &&
               data.map((item) => <SearchItem item={item} key={item._id} />)}
-            {!data && "Loading..."}
+            {!data && <Loading />}
           </div>
         </div>
       </div>

@@ -1,4 +1,5 @@
 import useFetch from "../../hooks/useFetch";
+import Loading from "../../pages/loading/Loading";
 import "./featured.css";
 
 const Featured = () => {
@@ -8,7 +9,7 @@ const Featured = () => {
   return (
     <div className="featured">
       {loading ? (
-        "Loading..."
+        <Loading />
       ) : (
         <>
           <div className="featuredItem">

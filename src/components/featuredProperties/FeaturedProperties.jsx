@@ -1,6 +1,7 @@
 import { useState } from "react";
 import useFetch from "../../hooks/useFetch";
 import "./featuredProperties.css";
+import Loading from "../../pages/loading/Loading";
 
 const FeaturedProperties = () => {
   const [limit, setLimit] = useState(0);
@@ -9,7 +10,7 @@ const FeaturedProperties = () => {
   return (
     <div className="fp">
       {loading ? (
-        "loading..."
+        <Loading />
       ) : (
         <>
           {!data || !Array.isArray(data)

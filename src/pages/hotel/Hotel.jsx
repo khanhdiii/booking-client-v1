@@ -16,6 +16,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { SearchContext } from "../../context/SearchContex";
 import { AuthContext } from "../../context/AuthContext";
 import Reverse from "../../components/reverse/Reverse";
+import Loading from "../loading/Loading";
 
 const Hotel = () => {
   const location = useLocation();
@@ -88,7 +89,7 @@ const Hotel = () => {
       <Navbar />
       <Header type="list" />
       {loading ? (
-        "Loading..."
+        <Loading />
       ) : (
         <div className="hotelContainer">
           {open && (
