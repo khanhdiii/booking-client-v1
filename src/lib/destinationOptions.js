@@ -17,6 +17,7 @@ export const destinationOptions = [
     "Chí Linh",
     "Dĩ An",
     "Đà Lạt",
+    "Đà Nẵng",
     "Điện Biên Phủ",
     "Đông Hà",
     "Đồng Hới",
