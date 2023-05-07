@@ -1,29 +1,52 @@
+import {
+  Link,
+  Navigate,
+  useHistory,
+  useNavigate,
+} from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import Loading from "../../pages/loading/Loading";
 import "./featured.css";
 
-const Featured = () => {
+const Featured = ({ type }) => {
   const { data, loading, error } = useFetch(
     "/hotels/countByCity?cities=Đà Nẵng,Hội An,Hà Nội"
   );
+  const navigate = useNavigate();
+  const handleClick = () => {
+    const destination = document.querySelector(
+      ".featuredTitles h1"
+    ).textContent;
+    const dates = [{ startDate: new Date(), endDate: new Date() }]; // set default dates
+
+    // eslint-disable-next-line no-restricted-globals
+    history.push({
+      pathname: "/list",
+      state: { destination, dates },
+    });
+    navigate("/hotels", { state: { destination } });
+  };
   return (
     <div className="featured">
       {loading ? (
         <Loading />
       ) : (
         <>
-          <div className="featuredItem">
-            <img
-              src="https://cf.bstatic.com/xdata/images/city/600x600/688844.jpg?k=02892d4252c5e4272ca29db5faf12104004f81d13ff9db724371de0c526e1e15&o="
-              alt=""
-              className="featuredImg"
-            />
-            <div className="featuredTitles">
-              <h1>Đà Nẵng</h1>
-              <h2>{data[0]} </h2>
+          {" "}
+          <div className={type}>
+            <div className="featuredItem">
+              <img
+                src="https://cf.bstatic.com/xdata/images/city/600x600/688844.jpg?k=02892d4252c5e4272ca29db5faf12104004f81d13ff9db724371de0c526e1e15&o="
+                alt=""
+                className="featuredImg"
+              />
+              <div className="featuredTitles">
+                <h1>Đà Nẵng</h1>
+                <h2>{data[0]} </h2>
+              </div>
             </div>
           </div>
-
           <div className="featuredItem">
             <img
               src="https://cf.bstatic.com/xdata/images/city/600x600/688866.jpg?k=fc9d2cb9fe2f6d1160e10542cd2b83f5a8008401d33e8750ee3c2691cf4d4f7e&o="

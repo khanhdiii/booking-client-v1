@@ -12,7 +12,9 @@ import { destinationOptions } from "../../lib/destinationOptions";
 
 const List = () => {
   const location = useLocation();
-  const [destination, setDestination] = useState(location.state.destination);
+  const [destination, setDestination] = useState(
+    location.state.destination
+  );
   const [city, setCity] = useState("");
   const [dates, setDates] = useState(location.state.dates);
   const [openDate, setOpenDate] = useState(false);
@@ -128,12 +130,14 @@ const List = () => {
                 </div>
               </div>
             </div>
-            <button onClick={handleClick}>Search</button>
+            {/* <button onClick={handleClick}>Search</button> */}
           </div>
           <div className="listResult">
             {data &&
               Array.isArray(data) &&
-              data.map((item) => <SearchItem item={item} key={item._id} />)}
+              data.map((item) => (
+                <SearchItem item={item} key={item._id} />
+              ))}
             {!data && <Loading />}
           </div>
         </div>
