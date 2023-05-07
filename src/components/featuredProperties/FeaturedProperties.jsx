@@ -19,7 +19,7 @@ const FeaturedProperties = (props) => {
             ? "Data is not an array"
             : data.map((item) => (
                 <div className="fpItem" key={item._id}>
-                  {item.photo && item.photo[0] && (
+                  {item.photos && item.photos[0] && (
                     <img
                       src={item?.photos?.[0] || undefined}
                       alt=""
