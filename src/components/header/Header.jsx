@@ -48,7 +48,8 @@ const Header = ({ type }) => {
     setOptions((prev) => {
       return {
         ...prev,
-        [name]: operation === "i" ? options[name] + 1 : options[name] - 1,
+        [name]:
+          operation === "i" ? options[name] + 1 : options[name] - 1,
       };
     });
   };
@@ -71,7 +72,9 @@ const Header = ({ type }) => {
     <div className="header">
       <div
         className={
-          type === "list" ? "headerContainer listMode" : "headerContainer"
+          type === "list"
+            ? "headerContainer listMode"
+            : "headerContainer"
         }
       >
         <div className="headerList">
@@ -79,10 +82,10 @@ const Header = ({ type }) => {
             <FontAwesomeIcon icon={faBed} />
             <span>Stays</span>
           </div>
-          <div className="headerListItem">
+          {/* <div className="headerListItem">
             <FontAwesomeIcon icon={faPlane} />
             <span>Test</span>
-          </div>
+          </div> */}
         </div>
         {type !== "list" && (
           <>
@@ -90,19 +93,25 @@ const Header = ({ type }) => {
               A lifetime of discounts? It's Genius.
             </h1>
             <p className="headerDesc">
-              Get rewarded for your travels – unlock instant savings of 10% or
-              more with a free booking account
+              Get rewarded for your travels – unlock instant savings
+              of 10% or more with a free booking account
             </p>
             {user ? (
               "Good a nice trip!!!!"
             ) : (
-              <button className="headerBtn" onClick={HandleMoveSignin}>
+              <button
+                className="headerBtn"
+                onClick={HandleMoveSignin}
+              >
                 Sign in / Register
               </button>
             )}
             <div className="headerSearch">
               <div className="headerSearchItem">
-                <FontAwesomeIcon icon={faBed} className="headerIcon" />
+                <FontAwesomeIcon
+                  icon={faBed}
+                  className="headerIcon"
+                />
                 {/* <input
                   type="text"
                   placeholder="Đà Nẵng???"
@@ -124,11 +133,17 @@ const Header = ({ type }) => {
                 </div>
               </div>
               <div className="headerSearchItem">
-                <FontAwesomeIcon icon={faCalendarDays} className="headerIcon" />
+                <FontAwesomeIcon
+                  icon={faCalendarDays}
+                  className="headerIcon"
+                />
                 <span
                   onClick={() => setOpenDate(!openDate)}
                   className="headerSearchText"
-                >{`${format(dates[0].startDate, "dd/MM/yyyy")} to ${format(
+                >{`${format(
+                  dates[0].startDate,
+                  "dd/MM/yyyy"
+                )} to ${format(
                   dates[0].endDate,
                   "dd/MM/yyyy"
                 )}`}</span>
@@ -144,7 +159,10 @@ const Header = ({ type }) => {
                 )}
               </div>
               <div className="headerSearchItem">
-                <FontAwesomeIcon icon={faPerson} className="headerIcon" />
+                <FontAwesomeIcon
+                  icon={faPerson}
+                  className="headerIcon"
+                />
                 <span
                   onClick={() => setOpenOptions(!openOptions)}
                   className="headerSearchText"
@@ -178,7 +196,9 @@ const Header = ({ type }) => {
                         <button
                           disabled={options.children <= 0}
                           className="optionCounterButton"
-                          onClick={() => handleOption("children", "d")}
+                          onClick={() =>
+                            handleOption("children", "d")
+                          }
                         >
                           -
                         </button>
@@ -187,7 +207,9 @@ const Header = ({ type }) => {
                         </span>
                         <button
                           className="optionCounterButton"
-                          onClick={() => handleOption("children", "i")}
+                          onClick={() =>
+                            handleOption("children", "i")
+                          }
                         >
                           +
                         </button>
