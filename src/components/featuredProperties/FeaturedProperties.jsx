@@ -3,10 +3,12 @@ import useFetch from "../../hooks/useFetch";
 import "./featuredProperties.css";
 import Loading from "../../pages/loading/Loading";
 
-const FeaturedProperties = () => {
+const FeaturedProperties = (props) => {
   const [limit, setLimit] = useState(0);
-  const { data, loading, error } = useFetch(`/hotels?featured=${true}`);
-
+  const { data, loading, error } = useFetch(
+    `/hotels?featured=${true}`
+  );
+  const item = props.item;
   return (
     <div className="fp">
       {loading ? (
@@ -18,7 +20,11 @@ const FeaturedProperties = () => {
             : data.map((item) => (
                 <div className="fpItem" key={item._id}>
                   {item.photo && item.photo[0] && (
-                    <img src={item.photo[0]} alt="" className="fpImg" />
+                    <img
+                      src={item?.photos?.[0] || undefined}
+                      alt=""
+                      className="fpImg"
+                    />
                   )}
                   <span className="fpName">{item.name}</span>
                   <span className="fpCity">{item.city}</span>
