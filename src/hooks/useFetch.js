@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
 
-const useFetch = (url) => {
+const useFetch = (url, accessToken) => {
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(false)
@@ -10,8 +10,7 @@ const useFetch = (url) => {
         const fetchData = async () => {
             setLoading(true)
             try {
-                const res = await axios.get(`https://bookingapiv1.onrender.com/api` + url);
-                // const res = await axios.get(url);
+                const res = await axios.get(`https://bookingapiv1.onrender.com/api` + url, { headers: { token: `Bearer ${accessToken}` } })
                 setData(res.data)
             }
             catch (err) {
@@ -20,7 +19,7 @@ const useFetch = (url) => {
             setLoading(false)
         }
         fetchData()
-    }, [url])
+    }, [url, accessToken])
 
 
     const reFetch = async () => {
