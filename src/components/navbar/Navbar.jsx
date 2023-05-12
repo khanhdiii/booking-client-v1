@@ -1,17 +1,12 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./navbar.css";
-import { useContext } from "react";
-import { AuthContext } from "../../context/AuthContext";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
-  const location = useLocation();
-  const path = location.pathname;
+  const user = useSelector((state) => state.auth.login.currentUser);
   const navigate = useNavigate();
 
-  const { user } = useContext(AuthContext);
-
   const handleLogout = () => {
-    // Remove data user in localStorage
     localStorage.removeItem("user");
 
     // Navigate to signin
@@ -30,7 +25,7 @@ const Navbar = () => {
         {user ? (
           <div className="navItems">
             <span className="navUsername">
-              Have a good day <p>{user && user.username}</p>
+              Hi, <p> {user.username} </p>
             </span>
 
             <button
@@ -44,10 +39,16 @@ const Navbar = () => {
           </div>
         ) : (
           <div className="navItems">
-            <button className="navButton" onClick={() => navigate("/signup")}>
+            <button
+              className="navButton"
+              onClick={() => navigate("/signup")}
+            >
               Register
             </button>
-            <button className="navButton" onClick={() => navigate("/signin")}>
+            <button
+              className="navButton"
+              onClick={() => navigate("/signin")}
+            >
               Login
             </button>
           </div>

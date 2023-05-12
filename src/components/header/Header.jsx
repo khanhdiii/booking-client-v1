@@ -17,15 +17,14 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { SearchContext } from "../../context/SearchContex";
 import SigninForm from "../../pages/Auth/Signin";
-import useFetch from "../../hooks/useFetch";
-import { AuthContext } from "../../context/AuthContext";
 import { destinationOptions } from "../../lib/destinationOptions";
+import { useSelector } from "react-redux";
 
 const Header = ({ type }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const path = location.pathname;
-  const { user, setUser } = useContext(AuthContext);
+  const user = useSelector((state) => state.auth.login.currentUser);
 
   const [destination, setDestination] = useState("");
   const [openDate, setOpenDate] = useState(false);
@@ -82,10 +81,6 @@ const Header = ({ type }) => {
             <FontAwesomeIcon icon={faBed} />
             <span>Stays</span>
           </div>
-          {/* <div className="headerListItem">
-            <FontAwesomeIcon icon={faPlane} />
-            <span>Test</span>
-          </div> */}
         </div>
         {type !== "list" && (
           <>

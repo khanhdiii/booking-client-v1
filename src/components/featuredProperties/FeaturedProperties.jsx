@@ -17,7 +17,7 @@ const FeaturedProperties = (props) => {
         <>
           {!data || !Array.isArray(data)
             ? "Data is not an array"
-            : data.map((item) => (
+            : data?.map((item) => (
                 <div className="fpItem" key={item._id}>
                   {item.photos && item.photos[0] && (
                     <img

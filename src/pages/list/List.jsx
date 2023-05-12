@@ -135,7 +135,7 @@ const List = () => {
           <div className="listResult">
             {data &&
               Array.isArray(data) &&
-              data.map((item) => (
+              data?.map((item) => (
                 <SearchItem item={item} key={item._id} />
               ))}
             {!data && <Loading />}

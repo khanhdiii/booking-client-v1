@@ -54,16 +54,3 @@
   color: #003580;
   cursor: pointer;
 }
-
-/* Responsive */
-@media only screen and (max-width: 768px) {
-  .fLists {
-    justify-content: center;
-  }
-
-  .fList {
-    flex-basis: 100%;
-    max-width: 100%;
-    text-align: center;
-  }
-}
