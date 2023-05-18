@@ -1,7 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit"
 import authReducer from "./authSlice"
 import userReducer from "./userSlice"
-import destinationReducer from "./destinationSlice"
 import searchReducer from "./searchSlice"
 
 

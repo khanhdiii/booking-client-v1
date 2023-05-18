@@ -17,6 +17,7 @@ import { SearchContext } from "../../context/SearchContex";
 import { AuthContext } from "../../context/AuthContext";
 import Reverse from "../../components/reverse/Reverse";
 import Loading from "../loading/Loading";
+import { useSelector } from "react-redux";
 
 const Hotel = () => {
   const location = useLocation();
@@ -27,7 +28,8 @@ const Hotel = () => {
 
   const { data, loading, error } = useFetch(`/hotels/find/${id}`);
   const { dates, options } = useContext(SearchContext);
-  const { user, setUser } = useContext(AuthContext);
+  // const { user, setUser } = useContext(AuthContext);
+  const user = useSelector((state) => state.auth.login.currentUser);
   const navigate = useNavigate();
 
   const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
