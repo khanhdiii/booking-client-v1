@@ -4,6 +4,9 @@ import Header from "../../components/header/Header";
 import MailList from "../../components/mailList/MailList";
 import Footer from "../../components/footer/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Box from "@mui/material/Box";
+import ImageList from "@mui/material/ImageList";
+import ImageListItem from "@mui/material/ImageListItem";
 import {
   faCircleArrowLeft,
   faCircleArrowRight,
@@ -116,18 +119,26 @@ const Hotel = () => {
               Book a stay over ${data.cheapestPrice} at this property
               and get a free airport taxi
             </span>
-            <div className="hotelImages">
-              {data.photos?.map((photo, i) => (
-                <div className="hotelImgWrapper" key={i}>
-                  <img
-                    onClick={() => handleOpen(i)}
-                    src={photo}
-                    alt=""
-                    className="hotelImg"
-                  />
-                </div>
-              ))}
-            </div>
+
+            <Box
+              sx={{ width: 1025, height: 500, overflowY: "scroll" }}
+            >
+              <ImageList variant="masonry" cols={3} gap={8}>
+                {/* <div className="hotelImages"> */}
+                {data.photos?.map((photo, i) => (
+                  <ImageListItem key={i}>
+                    <img
+                      onClick={() => handleOpen(i)}
+                      src={`${photo}?w=248&fit=crop&auto=format`}
+                      srcSet={`${photo}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                      alt=""
+                      // className="hotelImg"
+                      loading="lazy"
+                    />
+                  </ImageListItem>
+                ))}
+              </ImageList>
+            </Box>
             <div className="hotelDetails">
               <div className="hotelDetailsTexts">
                 <h1 className="hotelTitle">{data.title}</h1>
