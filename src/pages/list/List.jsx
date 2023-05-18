@@ -1,24 +1,26 @@
-import "./list.css";
-import Navbar from "../../components/navbar/Navbar";
-import Header from "../../components/header/Header";
-import { useState } from "react";
 import { format } from "date-fns";
+import { useEffect, useState } from "react";
 import { DateRange } from "react-date-range";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
+import Header from "../../components/header/Header";
+import Navbar from "../../components/navbar/Navbar";
 import SearchItem from "../../components/searchItem/SearchItem";
 import useFetch from "../../hooks/useFetch";
-import { useLocation } from "react-router-dom";
-import Loading from "../loading/Loading";
 import { destinationOptions } from "../../lib/destinationOptions";
+import Loading from "../loading/Loading";
+import { newSearch } from "../../redux/searchSlice";
+import "./list.css";
 
 const List = () => {
-  const location = useLocation();
-  const [destination, setDestination] = useState(
-    location.state.destination
-  );
-  const [city, setCity] = useState("");
-  const [dates, setDates] = useState(location.state.dates);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const desti = useSelector((state) => state.search);
+
+  const [destination, setDestination] = useState(desti.destination);
+  const [dates, setDates] = useState(desti.dates);
   const [openDate, setOpenDate] = useState(false);
-  const [options, setOptions] = useState(location.state.options);
+  const [options, setOptions] = useState(desti.options);
   const [showOptions, setShowOptions] = useState(false);
 
   const [min, setMin] = useState(undefined);
@@ -28,8 +30,34 @@ const List = () => {
   );
 
   const handleClick = () => {
-    reFetch();
+    const searchPayload = {
+      destination: destination,
+      dates: dates,
+      options: {
+        ...options,
+        destinationOptions: destination,
+      },
+    };
+    dispatch(newSearch(searchPayload));
+    navigate("/hotels");
   };
+
+  // Updated function to handle destination click from Featured component
+  const handleDestinationClick = (name) => {
+    setDestination(name);
+    setDestinationOptions(name);
+  };
+
+  const setDestinationOptions = (name) => {
+    if (destinationOptions.includes(name)) {
+      setOptions({
+        ...options,
+        destinationOptions: name,
+      });
+    }
+  };
+
+  useEffect(() => {}, []);
 
   return (
     <div>
@@ -41,12 +69,6 @@ const List = () => {
             <h1 className="lsTitle">Search</h1>
             <div className="lsItem">
               <label>Destination</label>
-              {/* <input
-                placeholder={destination}
-                onChange={(item) => setDestination(item.target.value)}
-                value={destination}
-                type="text"
-              /> */}
               <div className="select-wrapper">
                 <select
                   value={destination}
@@ -54,7 +76,11 @@ const List = () => {
                   onClick={() => setShowOptions(true)}
                 >
                   {destinationOptions.map((option) => (
-                    <option key={option} value={option}>
+                    <option
+                      key={option}
+                      value={option}
+                      onClick={() => handleDestinationClick(option)}
+                    >
                       {option}
                     </option>
                   ))}
@@ -67,7 +93,10 @@ const List = () => {
               <span onClick={() => setOpenDate(!openDate)}>{`${format(
                 dates[0]?.startDate,
                 "dd/MM/yyyy"
-              )} to ${format(dates[0].endDate, "dd/MM/yyyy")}`}</span>
+              )} to ${format(
+                dates[0]?.endDate,
+                "dd/MM/yyyy"
+              )}`}</span>
               {openDate && (
                 <DateRange
                   onChange={(item) => setDates([item.selection])}
@@ -89,7 +118,7 @@ const List = () => {
                     onChange={(e) => setMin(e.target.value)}
                     value={min}
                   />
-                </div>
+                </div>{" "}
                 <div className="lsOptionItem">
                   <span className="lsOptionText">
                     Max price <small>per night</small>
@@ -130,12 +159,12 @@ const List = () => {
                 </div>
               </div>
             </div>
-            {/* <button onClick={handleClick}>Search</button> */}
+            <button onClick={handleClick}>Search</button>
           </div>
           <div className="listResult">
             {data &&
               Array.isArray(data) &&
-              data?.map((item) => (
+              data.map((item) => (
                 <SearchItem item={item} key={item._id} />
               ))}
             {!data && <Loading />}

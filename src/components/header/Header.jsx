@@ -1,29 +1,25 @@
 import {
   faBed,
   faCalendarDays,
-  faCar,
   faPerson,
-  faPlane,
-  faTaxi,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "./header.css";
-import { DateRange } from "react-date-range";
+import { format } from "date-fns";
 import { useState } from "react";
+import { DateRange } from "react-date-range";
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
-import { format } from "date-fns";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import { SearchContext } from "../../context/SearchContex";
-import SigninForm from "../../pages/Auth/Signin";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
 import { destinationOptions } from "../../lib/destinationOptions";
-import { useSelector } from "react-redux";
+import { newSearch } from "../../redux/searchSlice";
+import "./header.css";
 
 const Header = ({ type }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const path = location.pathname;
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.login.currentUser);
 
   const [destination, setDestination] = useState("");
@@ -53,13 +49,16 @@ const Header = ({ type }) => {
     });
   };
 
-  const { dispatch } = useContext(SearchContext);
+  // const { dispatch } = useContext(SearchContext);
 
   const handleSearch = () => {
-    dispatch({
-      type: "NEW_SEARCH",
-      payload: { destination, dates, options },
-    });
+    dispatch(
+      newSearch({
+        destination,
+        dates,
+        options,
+      })
+    );
     navigate("/hotels", { state: { destination, dates, options } });
   };
 
