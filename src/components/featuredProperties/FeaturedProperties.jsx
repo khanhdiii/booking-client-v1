@@ -2,6 +2,7 @@ import { useState } from "react";
 import useFetch from "../../hooks/useFetch";
 import "./featuredProperties.css";
 import Loading from "../../pages/loading/Loading";
+import {  useNavigate } from "react-router-dom";
 
 const FeaturedProperties = (props) => {
   const [limit, setLimit] = useState(0);
@@ -9,6 +10,11 @@ const FeaturedProperties = (props) => {
     `/hotels?featured=${true}`
   );
   const item = props.item;
+const navigate=useNavigate()
+
+  const handleDetail=(itemId)=>{
+    navigate(`/hotels/${itemId}`)
+  }
   return (
     <div className="fp">
       {loading ? (
@@ -18,7 +24,7 @@ const FeaturedProperties = (props) => {
           {!data || !Array.isArray(data)
             ? "Data is not an array"
             : data?.map((item) => (
-                <div className="fpItem" key={item._id}>
+                <div className="fpItem" key={item._id} onClick={()=>handleDetail(item._id)}>
                   {item.photos && item.photos[0] && (
                     <img
                       src={item?.photos?.[0] || undefined}
