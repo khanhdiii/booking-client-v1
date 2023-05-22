@@ -67,7 +67,7 @@ const SigninForm = () => {
 
           <span>
             Not have account,{" "}
-            <button onClick={() => navigate("/signup")}>
+            <button className="btn_create" onClick={() => navigate("/signup")}>
               create here
             </button>
           </span>

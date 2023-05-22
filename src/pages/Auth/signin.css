@@ -65,7 +65,7 @@ input[type="password"] {
   background-color: #3b5998;
 }
 
-button {
+.btn_create {
   background-color: transparent;
   color: #1877f2;
   border: none;
@@ -77,7 +77,7 @@ button {
   transition: all 0.3s ease-in-out;
 }
 
-button:hover {
+.btn_create:hover {
   text-decoration: none;
 }
 

@@ -1,9 +1,18 @@
+.container-signup {
+  margin: 5% 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 .signup-form-container {
   background-color: #f6f7f8;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 50px 0;
+  border-radius: 8px;
 }
 
 .form-title {
@@ -48,6 +57,7 @@
   background-color: #f0f2f5;
   margin-top: 5px;
 }
+
 .error-message {
   color: red;
   margin-top: 10px;

@@ -3,6 +3,7 @@ import React from "react";
 import "./signup.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Alert } from "@mui/material";
 
 const SignupForm = () => {
   const [email, setEmail] = useState("");
@@ -12,6 +13,8 @@ const SignupForm = () => {
   const [passwordError, setPasswordError] = useState("");
   const [usernameError, setUsernameError] = useState("");
   const [emailError, setEmailError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
   const isValidEmail = (email) => {
@@ -84,17 +87,35 @@ const SignupForm = () => {
         }
       );
       if (res) {
-        alert("Created Account");
-        navigate("/signin");
+        setSuccessMessage("Created Account");
+
+        setTimeout(() => {
+          navigate("/signin");
+        }, 3000);
       }
     } catch (error) {
-      alert(error);
+      setErrorMessage(error.response.data.message);
     }
   };
 
   return (
+    <>
+       {successMessage && (
+        <Alert severity="success" onClose={() => setSuccessMessage("")}  sx={{
+          padding: "10px",
+          display: "flex",
+          alignItems: "center",
+        }}>
+          {successMessage}
+        </Alert>
+      )}
+      {errorMessage && (
+        <Alert severity="error" onClose={() => setErrorMessage("")} sx={{ marginBottom: "10px" }}>
+          {errorMessage}
+        </Alert>
+      )}
     <section className="signup-form-container">
-      <h2 className="form-title">Create an Account</h2>
+       <h2 className="form-title">Create an Account</h2>
       <form className="signup-form" onSubmit={handleSubmit}>
         <div className="form-group">
           <label className="label" htmlFor="name">
@@ -173,6 +194,7 @@ const SignupForm = () => {
         </button>
       </form>
     </section>
+    </>
   );
 };
 
