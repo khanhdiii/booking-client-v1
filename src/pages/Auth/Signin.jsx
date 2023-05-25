@@ -20,32 +20,7 @@ const SigninForm = () => {
       username: username,
       password: password,
     };
-    const handleSignin = async (e) => {
-      e.preventDefault();
-      const newUser = {
-        username: username,
-        password: password,
-      };
-
-      try {
-        const response = await loginUser(newUser, dispatch, navigate);
-        if (response && response.success) {
-          localStorage.setItem("user", JSON.stringify(response.user));
-          checkLoggedIn();
-        }
-      } catch (error) {
-        console.log(error);
-        // Xử lý lỗi nếu cần thiết
-      }
-    };
-  };
-
-  const checkLoggedIn = () => {
-    const user = localStorage.getItem("user");
-    if (user) {
-      // Đã đăng nhập
-      navigate("/");
-    }
+    loginUser(newUser, dispatch, navigate);
   };
 
   return (
