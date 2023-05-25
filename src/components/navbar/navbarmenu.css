@@ -1,0 +1,70 @@
+.nav {
+  display: flex;
+  flex-direction: row;
+  background-color: #003580;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+}
+.titlePage {
+  font-weight: bold;
+  text-align: left;
+  margin-top: 20px;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 36px;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+  float: left;
+}
+.logo {
+  font-weight: 500;
+}
+.navItems {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.navUsername {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 400;
+  color: #fff;
+}
+
+.navUsername p {
+  display: inline;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.navButton {
+  margin-left: 20px;
+  border: none;
+  padding: 5px 20px;
+  cursor: pointer;
+  background-color: #ffffff;
+  color: #003580;
+  border-radius: 10px;
+  margin-top: 5px;
+}
+
+.navButton:hover {
+  background-color: #548ddc;
+  color: #fff;
+  border: 1px solid #fff;
+}
+
+.navbar-collapse {
+  flex-grow: 0 !important;
+}
+
+.navbar-toggler-icon {
+  color: #fff;
+}

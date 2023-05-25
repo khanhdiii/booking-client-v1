@@ -1,5 +1,4 @@
 import "./hotel.css";
-import Navbar from "../../components/navbar/Navbar";
 import Header from "../../components/header/Header";
 import MailList from "../../components/mailList/MailList";
 import Footer from "../../components/footer/Footer";
@@ -21,6 +20,7 @@ import { AuthContext } from "../../context/AuthContext";
 import Reverse from "../../components/reverse/Reverse";
 import Loading from "../loading/Loading";
 import { useSelector } from "react-redux";
+import NavbarMenu from "../../components/navbar/NavbarMenu";
 
 const Hotel = () => {
   const location = useLocation();
@@ -43,9 +43,7 @@ const Hotel = () => {
     return diffDays;
   }
   const days =
-    dates.length > 0
-      ? dayDifference(dates[0].endDate, dates[0].startDate)
-      : 0;
+    dates.length > 0 ? dayDifference(dates[0].endDate, dates[0].startDate) : 0;
 
   const handleOpen = (i) => {
     setSlideNumber(i);
@@ -73,7 +71,7 @@ const Hotel = () => {
   };
   return (
     <div>
-      <Navbar />
+      <NavbarMenu />
       <Header type="list" />
       {loading ? (
         <Loading />
@@ -116,13 +114,11 @@ const Hotel = () => {
               Excellent location – {data.distance}m from center
             </span>
             <span className="hotelPriceHighlight">
-              Book a stay over ${data.cheapestPrice} at this property
-              and get a free airport taxi
+              Book a stay over ${data.cheapestPrice} at this property and get a
+              free airport taxi
             </span>
 
-            <Box
-              sx={{ width: 1025, height: 500, overflowY: "scroll" }}
-            >
+            <Box sx={{ width: 1025, height: 500, overflowY: "scroll" }}>
               <ImageList variant="masonry" cols={3} gap={8}>
                 {/* <div className="hotelImages"> */}
                 {data.photos?.map((photo, i) => (
@@ -147,12 +143,12 @@ const Hotel = () => {
               <div className="hotelDetailsPrice">
                 <h1>Perfect for a {days}-night stay!</h1>
                 <span>
-                  Located in the real heart of Krakow, this property
-                  has an excellent location score of 9.8!
+                  Located in the real heart of Krakow, this property has an
+                  excellent location score of 9.8!
                 </span>
                 <h2>
-                  <b>$({days * data.cheapestPrice * options.room})</b>{" "}
-                  ({days} nights)
+                  <b>$({days * data.cheapestPrice * options.room})</b> ({days}{" "}
+                  nights)
                 </h2>
                 <button onClick={handleClickReverse}>
                   Reserve or Book Now!

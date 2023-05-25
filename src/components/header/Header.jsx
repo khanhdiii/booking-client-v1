@@ -2,10 +2,12 @@ import {
   faBed,
   faCalendarDays,
   faPerson,
+  faPlane,
+  faFaceSmile,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { format } from "date-fns";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { DateRange } from "react-date-range";
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
@@ -38,18 +40,36 @@ const Header = ({ type }) => {
     room: 1,
   });
   const [showOptions, setShowOptions] = useState(false);
+  const [showDateRange, setShowDateRange] = useState(false);
+  const ref = useRef(null);
 
   const handleOption = (name, operation) => {
     setOptions((prev) => {
       return {
         ...prev,
-        [name]:
-          operation === "i" ? options[name] + 1 : options[name] - 1,
+        [name]: operation === "i" ? options[name] + 1 : options[name] - 1,
       };
     });
   };
 
-  // const { dispatch } = useContext(SearchContext);
+  const handleClickOutside = (event) => {
+    if (
+      event.target.closest(".headerSearchItem") ||
+      event.target.closest(".rdrDefinedRangesWrapper") ||
+      event.target.closest(".rdrDateDisplayWrapper")
+    ) {
+      return;
+    }
+
+    setShowDateRange(false);
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const handleSearch = () => {
     dispatch(
@@ -70,15 +90,21 @@ const Header = ({ type }) => {
     <div className="header">
       <div
         className={
-          type === "list"
-            ? "headerContainer listMode"
-            : "headerContainer"
+          type === "list" ? "headerContainer listMode" : "headerContainer"
         }
       >
         <div className="headerList">
           <div className="headerListItem active">
             <FontAwesomeIcon icon={faBed} />
             <span>Stays</span>
+          </div>
+          <div className="headerListItem active">
+            <FontAwesomeIcon icon={faPlane} />
+            <span>Travel</span>
+          </div>
+          <div className="headerListItem active">
+            <FontAwesomeIcon icon={faFaceSmile} />
+            <span>Relax</span>
           </div>
         </div>
         {type !== "list" && (
@@ -87,25 +113,19 @@ const Header = ({ type }) => {
               A lifetime of discounts? It's Genius.
             </h1>
             <p className="headerDesc">
-              Get rewarded for your travels – unlock instant savings
-              of 10% or more with a free booking account
+              Get rewarded for your travels – unlock instant savings of 10% or
+              more with a free booking account
             </p>
             {user ? (
               "Good a nice trip!!!!"
             ) : (
-              <button
-                className="headerBtn"
-                onClick={HandleMoveSignin}
-              >
+              <button className="headerBtn" onClick={HandleMoveSignin}>
                 Sign in / Register
               </button>
             )}
             <div className="headerSearch">
               <div className="headerSearchItem">
-                <FontAwesomeIcon
-                  icon={faBed}
-                  className="headerIcon"
-                />
+                <FontAwesomeIcon icon={faBed} className="headerIcon" />
                 {/* <input
                   type="text"
                   placeholder="Đà Nẵng???"
@@ -127,42 +147,36 @@ const Header = ({ type }) => {
                 </div>
               </div>
               <div className="headerSearchItem">
-                <FontAwesomeIcon
-                  icon={faCalendarDays}
-                  className="headerIcon"
-                />
+                <FontAwesomeIcon icon={faCalendarDays} className="headerIcon" />
                 <span
-                  onClick={() => setOpenDate(!openDate)}
+                  onClick={() => setShowDateRange(!showDateRange)}
                   className="headerSearchText"
-                >{`${format(
-                  dates[0].startDate,
-                  "dd/MM/yyyy"
-                )} to ${format(
+                >{`${format(dates[0].startDate, "dd/MM/yyyy")} to ${format(
                   dates[0].endDate,
                   "dd/MM/yyyy"
                 )}`}</span>
-                {openDate && (
-                  <DateRange
-                    editableDateInputs={true}
-                    onChange={(item) => setDates([item.selection])}
-                    moveRangeOnFirstSelection={false}
-                    ranges={dates}
-                    className="date"
-                    minDate={new Date()}
-                  />
+
+                {showDateRange && (
+                  <div ref={ref} className="date">
+                    <DateRange
+                      editableDateInputs={true}
+                      onChange={(item) => setDates([item.selection])}
+                      moveRangeOnFirstSelection={false}
+                      ranges={dates}
+                      className="date"
+                      minDate={new Date()}
+                    />
+                  </div>
                 )}
               </div>
               <div className="headerSearchItem">
-                <FontAwesomeIcon
-                  icon={faPerson}
-                  className="headerIcon"
-                />
+                <FontAwesomeIcon icon={faPerson} className="headerIcon" />
                 <span
                   onClick={() => setOpenOptions(!openOptions)}
                   className="headerSearchText"
                 >{`${options.adult} adult · ${options.children} children · ${options.room} room`}</span>
                 {openOptions && (
-                  <div className="options">
+                  <div className="options" ref={ref}>
                     <div className="optionItem">
                       <span className="optionText">Adult</span>
                       <div className="optionCounter">
@@ -190,9 +204,7 @@ const Header = ({ type }) => {
                         <button
                           disabled={options.children <= 0}
                           className="optionCounterButton"
-                          onClick={() =>
-                            handleOption("children", "d")
-                          }
+                          onClick={() => handleOption("children", "d")}
                         >
                           -
                         </button>
@@ -201,9 +213,7 @@ const Header = ({ type }) => {
                         </span>
                         <button
                           className="optionCounterButton"
-                          onClick={() =>
-                            handleOption("children", "i")
-                          }
+                          onClick={() => handleOption("children", "i")}
                         >
                           +
                         </button>

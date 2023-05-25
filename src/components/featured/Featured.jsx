@@ -49,7 +49,8 @@ const Featured = () => {
             />
             <div className="featuredTitles">
               <h1>Đà Nẵng</h1>
-              <h2>{data[0]}</h2>
+
+              <h6>{data[0]}</h6>
             </div>
           </div>
           <div
@@ -63,7 +64,7 @@ const Featured = () => {
             />
             <div className="featuredTitles">
               <h1>Hội An</h1>
-              <h2>{data[1]}</h2>
+              <h6>{data[1]}</h6>
             </div>
           </div>
           <div
@@ -77,7 +78,7 @@ const Featured = () => {
             />
             <div className="featuredTitles">
               <h1>Hà Nội</h1>
-              <h2>{data[2]}</h2>
+              <h6>{data[2]}</h6>
             </div>
           </div>
         </>

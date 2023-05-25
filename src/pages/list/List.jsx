@@ -4,13 +4,13 @@ import { DateRange } from "react-date-range";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import Header from "../../components/header/Header";
-import Navbar from "../../components/navbar/Navbar";
 import SearchItem from "../../components/searchItem/SearchItem";
 import useFetch from "../../hooks/useFetch";
 import { destinationOptions } from "../../lib/destinationOptions";
 import Loading from "../loading/Loading";
 import { newSearch } from "../../redux/searchSlice";
 import "./list.css";
+import NavbarMenu from "../../components/navbar/NavbarMenu";
 
 const List = () => {
   const navigate = useNavigate();
@@ -61,7 +61,7 @@ const List = () => {
 
   return (
     <div>
-      <Navbar />
+      <NavbarMenu />
       <Header type="list" />
       <div className="listContainer">
         <div className="listWrapper">
@@ -93,10 +93,7 @@ const List = () => {
               <span onClick={() => setOpenDate(!openDate)}>{`${format(
                 dates[0]?.startDate,
                 "dd/MM/yyyy"
-              )} to ${format(
-                dates[0]?.endDate,
-                "dd/MM/yyyy"
-              )}`}</span>
+              )} to ${format(dates[0]?.endDate, "dd/MM/yyyy")}`}</span>
               {openDate && (
                 <DateRange
                   onChange={(item) => setDates([item.selection])}
@@ -164,9 +161,7 @@ const List = () => {
           <div className="listResult">
             {data &&
               Array.isArray(data) &&
-              data.map((item) => (
-                <SearchItem item={item} key={item._id} />
-              ))}
+              data.map((item) => <SearchItem item={item} key={item._id} />)}
             {!data && <Loading />}
           </div>
         </div>

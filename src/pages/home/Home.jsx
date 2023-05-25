@@ -3,23 +3,23 @@ import FeaturedProperties from "../../components/featuredProperties/FeaturedProp
 import Footer from "../../components/footer/Footer";
 import Header from "../../components/header/Header";
 import MailList from "../../components/mailList/MailList";
-import Navbar from "../../components/navbar/Navbar";
+import NavbarMenu from "../../components/navbar/NavbarMenu";
 import PropertyList from "../../components/propertyList/PropertyList";
 import "./home.css";
 
 const Home = () => {
   return (
     <div>
-      <Navbar />
-      <Header/>
+      <NavbarMenu />
+      <Header />
       <div className="homeContainer">
-        <Featured/>
+        <Featured />
         <h1 className="homeTitle">Browse by property type</h1>
-        <PropertyList/>
+        <PropertyList />
         <h1 className="homeTitle">Homes guests love</h1>
-        <FeaturedProperties/>
-        <MailList/>
-        <Footer/>
+        {/* <FeaturedProperties/> */}
+        <MailList />
+        <Footer />
       </div>
     </div>
   );
