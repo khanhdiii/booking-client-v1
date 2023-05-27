@@ -5,11 +5,9 @@ import { faUmbrellaBeach } from "@fortawesome/free-solid-svg-icons";
 const SearchItem = (props) => {
   const item = props.item;
 
-  const handleLinkToDetail = () => {
-    <Link to={`/hotels/${item._id}`}>See details</Link>;
-  };
   return (
-    <div className="searchItem" onClick={handleLinkToDetail}>
+    <div className="searchItem">
+      <Link to={`/hotels/${item._id}`} className="siLink"></Link>
       <img
         src={item?.photos?.[0] || undefined}
         alt="img hotel"
