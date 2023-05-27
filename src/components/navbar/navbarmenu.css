@@ -31,7 +31,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 400;
   color: #ffffff;
 }
@@ -71,4 +71,13 @@
 }
 .navbar-toggler {
   background-color: #fff !important;
+}
+
+button.navbar-toggler .collapsed {
+  background-color: #fff !important;
+  color: #fff !important;
+}
+button.navbar-toggler {
+  background-color: #fff !important;
+  color: #fff !important;
 }
