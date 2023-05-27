@@ -25,9 +25,13 @@ export const loginUser = async (user, dispatch, navigate, accessToken) => {
 export const registerUser = async (user, dispatch, navigate, accessToken) => {
   dispatch(registerStart());
   try {
-    await axios.post("auth/signup", user, {
-      headers: { Authorization: `Bearer ${accessToken}` },
-    });
+    await axios.post(
+      "https://bookingapiv1.onrender.com/api/auth/signup",
+      user,
+      {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      }
+    );
     dispatch(registerSuccess());
     navigate("/");
   } catch (err) {
