@@ -1,27 +1,31 @@
-.pList {
-  width: 100%;
-  max-width: 1024px;
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
+.containerPropertyList {
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .pListItem {
-  flex: 1;
+  margin-left: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   border-radius: 10px;
   overflow: hidden;
   cursor: pointer;
+  border: 1px solid rgb(237, 218, 218);
+  padding: 10px;
 }
 
 .pListItem:hover {
-  transform: scale(1.05);
+  transform: scale(1.02);
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
   cursor: pointer;
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
 .pListImg {
-  width: 100%;
+  width: 150px;
   height: 150px;
   object-fit: cover;
 }

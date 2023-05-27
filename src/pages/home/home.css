@@ -4,8 +4,8 @@
   flex-direction: column;
   align-items: center;
   gap: 50px;
+  background-color: transparent;
 }
-
 
 .homeTitle {
   width: 1024px;

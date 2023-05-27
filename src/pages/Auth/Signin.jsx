@@ -9,8 +9,6 @@ const SigninForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  // const { loading, error, dispatch } = useContext(AuthContext);
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
 

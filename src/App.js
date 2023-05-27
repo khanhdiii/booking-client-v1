@@ -4,7 +4,7 @@ import Hotel from "./pages/hotel/Hotel";
 import List from "./pages/list/List";
 import SignupForm from "./pages/Auth/Signup";
 import SigninForm from "./pages/Auth/Signin";
-
+import "react-multi-carousel/lib/styles.css";
 function App() {
   return (
     <BrowserRouter>
