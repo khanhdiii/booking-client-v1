@@ -24,7 +24,6 @@ const authSlice = createSlice({
       state.login.error = false;
 
       localStorage.setItem("token", action.payload.token);
-      localStorage.setItem("user", action.payload.username);
     },
     loginFailed: (state) => {
       state.login.isFetching = false;
