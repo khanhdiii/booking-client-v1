@@ -22,6 +22,10 @@ const authSlice = createSlice({
       state.login.isFetching = false;
       state.login.currentUser = action.payload;
       state.login.error = false;
+
+      localStorage.setItem("userJWT", action.payload.token);
+      localStorage.setItem("userEmail", action.payload.email);
+      localStorage.setItem("userId", action.payload.id);
     },
     loginFailed: (state) => {
       state.login.isFetching = false;
