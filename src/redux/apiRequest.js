@@ -9,10 +9,12 @@ import {
 } from "./authSlice";
 import { getUserFaliled, getUserStart, getUserSuccess } from "./userSlice";
 
-export const loginUser = async (user, dispatch, navigate) => {
+export const loginUser = async (user, dispatch, navigate, accessToken) => {
   dispatch(loginStart());
   try {
-    const res = await axios.post("auth/signin", user);
+    const res = await axios.post("auth/signin", user, {
+      headers: { token: `Bearer ${accessToken}` },
+    });
     dispatch(loginSuccess(res.data));
     navigate("/");
   } catch (err) {
@@ -20,7 +22,7 @@ export const loginUser = async (user, dispatch, navigate) => {
   }
 };
 
-export const registerUser = async (user, dispatch, navigate) => {
+export const registerUser = async (user, dispatch, navigate, accessToken) => {
   dispatch(registerStart());
   try {
     await axios.post("auth/signup", user);
