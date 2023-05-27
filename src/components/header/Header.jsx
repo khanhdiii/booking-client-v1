@@ -23,9 +23,7 @@ const Header = ({ type }) => {
   const location = useLocation();
   const path = location.pathname;
   const dispatch = useDispatch();
-  const currentUser = useSelector((state) => state.auth.currentUser); // Thay vì sử dụng state.auth.login.currentUser
-
-  // ...
+  const user = useSelector((state) => state.auth.login.currentUser);
 
   const HandleMoveSignin = (e) => {
     navigate(`/signin`);
@@ -42,11 +40,8 @@ const Header = ({ type }) => {
           <div className="headerList">{/* ... */}</div>
           {type !== "list" && (
             <>
-              {/* ... */}
-              {currentUser ? (
-                <p className="headerCurrentUser">
-                  Welcome, {currentUser.username}!
-                </p> // Hiển thị tên người dùng đã đăng nhập
+              {user ? (
+                <p className="headerCurrentUser">Welcome, {user.username}!</p>
               ) : (
                 <button className="headerBtn" onClick={HandleMoveSignin}>
                   Sign in / Register
