@@ -1,7 +1,7 @@
 .nav {
   display: flex;
   flex-direction: row;
-  background-color: #003580;
+  /* background-color: #003580; */
 }
 
 .container {
@@ -66,5 +66,8 @@
 }
 
 .navbar-toggler-icon {
-  color: #fff;
+  color: transparent;
+}
+.navbar-toggler {
+  background-color: #fff !important;
 }

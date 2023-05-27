@@ -1,3 +1,8 @@
+.imgbg {
+  background-image: url("https://q-xx.bstatic.com/xdata/images/xphoto/2880x1116/225704425.jpg?k=875206c51bb8051c8efbbd73a4ae76a9ba03c2b854ce1d428e69c1851ce9f2f9&o=") !important;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
 .homeContainer {
   margin-top: 50px;
   display: flex;
@@ -8,6 +13,25 @@
 }
 
 .homeTitle {
-  width: 1024px;
-  font-size: 20px;
+  margin-top: 20px;
+  position: relative;
+  font-size: 23px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-top: 10px;
+
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.homeTitle::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 110px;
+  height: 2px;
+  background-image: linear-gradient(to right, #1d36c7 45%, #ff0000);
 }

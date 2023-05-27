@@ -13,14 +13,15 @@ const Home = () => {
       <NavbarMenu />
       <Header />
       <div className="homeContainer">
+        <h2 className="homeTitle">Top Travels</h2>
         <Featured />
+        <h2 className="homeTitle">Browse by property type</h2>
+        <PropertyList />
+        <h2 className="homeTitle">Homes guests love</h2>
+        <FeaturedProperties />
+        <MailList />
+        <Footer />{" "}
       </div>
-      <h1 className="homeTitle">Browse by property type</h1>
-      <PropertyList />
-
-      <FeaturedProperties />
-      <MailList />
-      <Footer />
     </div>
   );
 };
