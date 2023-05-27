@@ -18,7 +18,8 @@ const SigninForm = () => {
       username: username,
       password: password,
     };
-    loginUser(newUser, dispatch, navigate);
+
+    await loginUser(newUser, dispatch, navigate);
   };
 
   return (
