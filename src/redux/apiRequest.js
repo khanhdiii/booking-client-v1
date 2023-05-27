@@ -12,7 +12,7 @@ import { getUserFailed, getUserStart, getUserSuccess } from "./userSlice";
 export const loginUser = async (user, dispatch, navigate, accessToken) => {
   dispatch(loginStart());
   try {
-    const res = await axios.post("auth/signin", user, {
+    const res = await axios.post("api/auth/signin", user, {
       headers: { Authorization: `Bearer ${accessToken}` },
     });
     dispatch(loginSuccess(res));
