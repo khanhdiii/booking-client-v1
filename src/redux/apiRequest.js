@@ -7,7 +7,7 @@ import {
   registerStart,
   registerSuccess,
 } from "./authSlice";
-import { getUserFaliled, getUserStart, getUserSuccess } from "./userSlice";
+import { getUserFailed, getUserStart, getUserSuccess } from "./userSlice";
 
 export const loginUser = async (user, dispatch, navigate, accessToken) => {
   dispatch(loginStart());
@@ -18,11 +18,11 @@ export const loginUser = async (user, dispatch, navigate, accessToken) => {
     dispatch(loginSuccess(res));
     navigate("/");
   } catch (err) {
-    dispatch(loginFailed);
+    dispatch(loginFailed());
   }
 };
 
-export const registerUser = async (user, dispatch, navigate, accessToken) => {
+export const registerUser = async (user, dispatch, navigate) => {
   dispatch(registerStart());
   try {
     await axios.post("auth/signup", user);
@@ -41,6 +41,6 @@ export const getAllUsers = async (accessToken, dispatch) => {
     });
     dispatch(getUserSuccess(res.data));
   } catch (err) {
-    dispatch(getUserFaliled());
+    dispatch(getUserFailed());
   }
 };
