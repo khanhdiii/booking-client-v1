@@ -2,17 +2,19 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./reverse.css";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import useFetch from "../../hooks/useFetch";
-import { useContext, useState } from "react";
-import { SearchContext } from "../../context/SearchContex";
+import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { newSearch, resetSearch } from "../../redux/searchSlice";
 
 const Reverse = ({ setOpen, hotelId }) => {
   const [selectedRooms, setSelectedRooms] = useState([]);
   const { data, loading, error } = useFetch(`/hotels/room/${hotelId}`);
-  const { dates } = useContext(SearchContext);
+  const search = useSelector((state) => state.search);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const [errorMessage, setErrorMessage] = useState(false);
   const getDatesInRange = (startDate, endDate) => {
     const start = new Date(startDate);
     const end = new Date(endDate);
@@ -29,7 +31,10 @@ const Reverse = ({ setOpen, hotelId }) => {
     return dates;
   };
 
-  const allDates = getDatesInRange(dates[0].startDate, dates[0].endDate);
+  const allDates = getDatesInRange(
+    search.dates[0].startDate,
+    search.dates[0].endDate
+  );
 
   const isAvaiable = (roomNumber) => {
     const isFound = roomNumber.unavaiableDates.some((date) =>
@@ -37,7 +42,6 @@ const Reverse = ({ setOpen, hotelId }) => {
     );
     return !isFound;
   };
-  // console.log(getDatesInRange(dates[0].startDate, dates[0].endDate));
 
   const handleSelect = (e) => {
     const checked = e.target.checked;
@@ -52,16 +56,19 @@ const Reverse = ({ setOpen, hotelId }) => {
   const handleReverse = async () => {
     try {
       await Promise.all(
-        selectedRooms.map((roomId) => {
-          const res = axios.put(`/rooms/availability/${roomId}`, {
+        selectedRooms.map(async (roomId) => {
+          const res = await axios.put(`/rooms/availability/${roomId}`, {
             dates: allDates,
           });
+          dispatch(resetSearch());
           return res.data;
         })
       );
       setOpen(false);
       navigate("/");
-    } catch (error) {}
+    } catch (error) {
+      setErrorMessage(error);
+    }
   };
 
   return (
@@ -97,7 +104,7 @@ const Reverse = ({ setOpen, hotelId }) => {
                     <label>{roomNumber.number}</label>
                     <input
                       type="checkbox"
-                      disabled={!isAvaiable}
+                      disabled={!isAvaiable(roomNumber)}
                       value={roomNumber._id}
                       onChange={handleSelect}
                     />

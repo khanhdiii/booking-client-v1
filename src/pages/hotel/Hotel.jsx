@@ -12,28 +12,28 @@ import {
   faCircleXmark,
   faLocationDot,
 } from "@fortawesome/free-solid-svg-icons";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import useFetch from "../../hooks/useFetch";
-import { useLocation, useNavigate } from "react-router-dom";
-import { SearchContext } from "../../context/SearchContex";
-import { AuthContext } from "../../context/AuthContext";
+import { useSelector, useDispatch } from "react-redux";
+import { newSearch, resetSearch } from "../../redux/searchSlice";
+import { useNavigate, useParams } from "react-router-dom";
 import Reverse from "../../components/reverse/Reverse";
 import Loading from "../loading/Loading";
-import { useSelector } from "react-redux";
 import NavbarMenu from "../../components/navbar/NavbarMenu";
 
 const Hotel = () => {
-  const location = useLocation();
-  const id = location.pathname.split("/")[2];
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [slideNumber, setSlideNumber] = useState(0);
   const [open, setOpen] = useState(false);
   const [openModal, setOpenModal] = useState(false);
 
   const { data, loading, error } = useFetch(`/hotels/find/${id}`);
-  const { dates, options } = useContext(SearchContext);
-  // const { user, setUser } = useContext(AuthContext);
+  const search = useSelector((state) => state.search);
+
   const user = useSelector((state) => state.auth.login.currentUser);
-  const navigate = useNavigate();
 
   const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
 
@@ -43,7 +43,9 @@ const Hotel = () => {
     return diffDays;
   }
   const days =
-    dates.length > 0 ? dayDifference(dates[0].endDate, dates[0].startDate) : 0;
+    search.dates.length > 0
+      ? dayDifference(search.dates[0].endDate, search.dates[0].startDate)
+      : 0;
 
   const handleOpen = (i) => {
     setSlideNumber(i);
@@ -69,6 +71,12 @@ const Hotel = () => {
       navigate("/signin");
     }
   };
+
+  const handleSearch = () => {
+    dispatch(newSearch(search));
+    navigate("/search");
+  };
+
   return (
     <div>
       <NavbarMenu />
@@ -104,7 +112,9 @@ const Hotel = () => {
             </div>
           )}
           <div className="hotelWrapper">
-            <button className="bookNow">Reserve or Book Now!</button>
+            <button className="bookNow" onClick={handleSearch}>
+              Reserve or Book Now!
+            </button>
             <h1 className="hotelTitle">{data.name}</h1>
             <div className="hotelAddress">
               <FontAwesomeIcon icon={faLocationDot} />
@@ -116,11 +126,9 @@ const Hotel = () => {
             <span className="hotelPriceHighlight">
               Book a stay over ${data.cheapestPrice} at this property and get a
               free airport taxi
-            </span>
-
+            </span>{" "}
             <Box sx={{ width: 1025, height: 500, overflowY: "scroll" }}>
               <ImageList variant="masonry" cols={3} gap={8}>
-                {/* <div className="hotelImages"> */}
                 {data.photos?.map((photo, i) => (
                   <ImageListItem key={i}>
                     <img
@@ -128,7 +136,6 @@ const Hotel = () => {
                       src={`${photo}?w=248&fit=crop&auto=format`}
                       srcSet={`${photo}?w=248&fit=crop&auto=format&dpr=2 2x`}
                       alt=""
-                      // className="hotelImg"
                       loading="lazy"
                     />
                   </ImageListItem>
@@ -147,8 +154,8 @@ const Hotel = () => {
                   excellent location score of 9.8!
                 </span>
                 <h2>
-                  <b>$({days * data.cheapestPrice * options.room})</b> ({days}{" "}
-                  nights)
+                  <b>$({days * data.cheapestPrice * search.options.room})</b> (
+                  {days} nights)
                 </h2>
                 <button onClick={handleClickReverse}>
                   Reserve or Book Now!
