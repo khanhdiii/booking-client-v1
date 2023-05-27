@@ -15,7 +15,7 @@ export const loginUser = async (user, dispatch, navigate, accessToken) => {
     const res = await axios.post("auth/signin", user, {
       headers: { token: `Bearer ${accessToken}` },
     });
-    dispatch(loginSuccess(res.data));
+    dispatch(loginSuccess(res));
     navigate("/");
   } catch (err) {
     dispatch(loginFailed);
