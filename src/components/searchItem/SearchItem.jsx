@@ -4,8 +4,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUmbrellaBeach } from "@fortawesome/free-solid-svg-icons";
 const SearchItem = (props) => {
   const item = props.item;
+
+  const handleLinkToDetail = () => {
+    <Link to={`/hotels/${item._id}`}>See details</Link>;
+  };
   return (
-    <div className="searchItem">
+    <div className="searchItem" onClick={handleLinkToDetail}>
       <img
         src={item?.photos?.[0] || undefined}
         alt="img hotel"
@@ -14,8 +18,7 @@ const SearchItem = (props) => {
       <div className="siDesc">
         <h1 className="siTitle">{item.name}</h1>
         <span className="siDistance">
-          <FontAwesomeIcon icon={faUmbrellaBeach} /> Beach way{" "}
-          {item.distance}
+          <FontAwesomeIcon icon={faUmbrellaBeach} /> Beach way {item.distance}
         </span>
         <span className="siTaxiOp">Free airport taxi</span>
         <span className="siSubtitle">{item.title}</span>
