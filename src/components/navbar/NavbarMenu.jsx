@@ -1,4 +1,9 @@
-import { faBars, faXmar, faUser } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBars,
+  faXmar,
+  faUser,
+  faCircleUser,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useNavigate } from "react-router-dom";
 import "./navbarmenu.css";
@@ -37,9 +42,15 @@ const NavbarMenu = () => {
                   <>
                     <div to="/">
                       <div className="navUsername">
-                        Hi, <p> {user.username} </p>
+                        Have a good trip, <p> {user.username} </p>
                         <NavDropdown
-                          title={<FontAwesomeIcon icon={faUser} />}
+                          title={
+                            <FontAwesomeIcon
+                              icon={faCircleUser}
+                              color="white"
+                              fontSize="23px"
+                            />
+                          }
                           id="navbarScrollingDropdown"
                           color="light"
                         >
