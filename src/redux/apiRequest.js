@@ -13,7 +13,7 @@ export const loginUser = async (user, dispatch, navigate, accessToken) => {
   dispatch(loginStart());
   try {
     const res = await axios.post("auth/signin", user, {
-      headers: { token: `Bearer ${accessToken}` },
+      headers: { Authorization: `Bearer ${accessToken}` },
     });
     dispatch(loginSuccess(res));
     navigate("/");
@@ -22,10 +22,12 @@ export const loginUser = async (user, dispatch, navigate, accessToken) => {
   }
 };
 
-export const registerUser = async (user, dispatch, navigate) => {
+export const registerUser = async (user, dispatch, navigate, accessToken) => {
   dispatch(registerStart());
   try {
-    await axios.post("auth/signup", user);
+    await axios.post("auth/signup", user, {
+      headers: { Authorization: `Bearer ${accessToken}` },
+    });
     dispatch(registerSuccess());
     navigate("/");
   } catch (err) {
@@ -37,7 +39,7 @@ export const getAllUsers = async (accessToken, dispatch) => {
   dispatch(getUserStart());
   try {
     const res = await axios.get("/users", {
-      headers: { token: `Bearer ${accessToken}` },
+      headers: { Authorization: `Bearer ${accessToken}` },
     });
     dispatch(getUserSuccess(res.data));
   } catch (err) {
