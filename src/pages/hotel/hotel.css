@@ -150,7 +150,7 @@
   cursor: pointer;
 }
 /*  (điện thoại di động, hiển thị chiều dọc) */
-@media (max-width: 320px) {
+@media (max-width: 464px) {
   .hotelWrapper {
     width: 85%;
   }
@@ -159,7 +159,8 @@
   }
 
   .css-1a99rji {
-    width: 150px !important;
+    max-width: 400px;
+    height: 600px !important;
     display: flex;
     justify-content: center;
     align-items: center;

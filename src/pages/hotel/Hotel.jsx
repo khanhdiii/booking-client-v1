@@ -124,7 +124,7 @@ const Hotel = () => {
               free airport taxi
             </span>
 
-            <Box sx={{ width: 1025, height: 500, overflowY: "scroll" }}>
+            <Box sx={{ overflowY: "scroll" }}>
               <ImageList variant="masonry" cols={3} gap={8}>
                 {/* <div className="hotelImages"> */}
                 {data.photos?.map((photo, i) => (
