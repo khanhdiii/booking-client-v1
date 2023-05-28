@@ -12,13 +12,7 @@ import { getUserFailed, getUserStart, getUserSuccess } from "./userSlice";
 export const loginUser = async (user, dispatch, navigate, accessToken) => {
   dispatch(loginStart());
   try {
-    const res = await axios.post(
-      "https://bookingapiv1.onrender.com/api/auth/signin",
-      user,
-      {
-        headers: { Authorization: `Bearer ${accessToken}` },
-      }
-    );
+    const res = await axios.post("auth/signin", user);
     dispatch(loginSuccess(res.data));
     const accessToken = res.data.token;
     localStorage.setItem("accessToken", accessToken);
@@ -31,13 +25,9 @@ export const loginUser = async (user, dispatch, navigate, accessToken) => {
 export const registerUser = async (user, dispatch, navigate, accessToken) => {
   dispatch(registerStart());
   try {
-    await axios.post(
-      "https://bookingapiv1.onrender.com/api/auth/signup",
-      user,
-      {
-        headers: { Authorization: `Bearer ${accessToken}` },
-      }
-    );
+    await axios.post("auth/signup", user, {
+      headers: { Authorization: `Bearer ${accessToken}` },
+    });
     dispatch(registerSuccess());
     navigate("/");
   } catch (err) {

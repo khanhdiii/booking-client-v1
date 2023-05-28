@@ -37,10 +37,13 @@ const Reverse = ({ setOpen, hotelId }) => {
   );
 
   const isAvaiable = (roomNumber) => {
-    const isFound = roomNumber.unavaiableDates.some((date) =>
-      allDates.includes(new Date(date).getTime())
-    );
-    return !isFound;
+    if (roomNumber && roomNumber.unavaiableDates) {
+      const isFound = roomNumber.unavaiableDates.some((date) =>
+        allDates.includes(new Date(date).getTime())
+      );
+      return !isFound;
+    }
+    return false;
   };
 
   const handleSelect = (e) => {

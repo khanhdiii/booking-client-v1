@@ -19,7 +19,7 @@ const SigninForm = () => {
       password: password,
     };
 
-    await loginUser(newUser, dispatch, navigate);
+    loginUser(newUser, dispatch, navigate);
   };
 
   return (
@@ -61,7 +61,7 @@ const SigninForm = () => {
           </button>
 
           <span>
-            Not have account,{" "}
+            Not have account,
             <button className="btn_create" onClick={() => navigate("/signup")}>
               create here
             </button>

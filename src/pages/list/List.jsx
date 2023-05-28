@@ -29,7 +29,7 @@ const List = () => {
     `/hotels?city=${destination}&min=${min || 0}&max=${max || 999}`
   );
 
-  const handleClick = () => {
+  useEffect(() => {
     const searchPayload = {
       destination: destination,
       dates: dates,
@@ -39,8 +39,20 @@ const List = () => {
       },
     };
     dispatch(newSearch(searchPayload));
-    navigate("/hotels");
-  };
+  }, [destination, dates, options, dispatch]);
+
+  // const handleClick = () => {
+  //   const searchPayload = {
+  //     destination: destination,
+  //     dates: dates,
+  //     options: {
+  //       ...options,
+  //       destinationOptions: destination,
+  //     },
+  //   };
+  //   dispatch(newSearch(searchPayload));
+  //   navigate("/hotels");
+  // };
 
   // Updated function to handle destination click from Featured component
   const handleDestinationClick = (name) => {
@@ -156,7 +168,7 @@ const List = () => {
                 </div>
               </div>
             </div>
-            <button onClick={handleClick}>Search</button>
+            {/* <button onClick={handleClick}>Search</button> */}
           </div>
           <div className="listResult">
             {data &&
