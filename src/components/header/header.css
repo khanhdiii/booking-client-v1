@@ -262,3 +262,15 @@
 .navbar-toggler-icon {
   color: #fff;
 }
+
+@media (max-width: 576px) {
+  .headerList {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .headerList {
+    display: none;
+  }
+}

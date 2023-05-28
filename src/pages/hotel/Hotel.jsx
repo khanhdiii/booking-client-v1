@@ -21,6 +21,7 @@ import Reverse from "../../components/reverse/Reverse";
 import Loading from "../loading/Loading";
 import { useSelector } from "react-redux";
 import NavbarMenu from "../../components/navbar/NavbarMenu";
+import { colors } from "@mui/material";
 
 const Hotel = () => {
   const search = useSelector((state) => state.search);
@@ -146,7 +147,9 @@ const Hotel = () => {
               <div className="hotelDetailsPrice">
                 <h1>Perfect for a {days}-night stay!</h1>
                 <span>This property has an excellent location</span>
-                <span>Time checkin 14:00 and checkout 12:00</span>
+                <span style={{ color: "red" }}>
+                  Time checkin 14:00 and checkout 12:00
+                </span>
                 <h2>
                   <b>
                     $(
