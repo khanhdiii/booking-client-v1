@@ -4,6 +4,9 @@ import { useNavigate } from "react-router-dom";
 
 import { loginUser } from "../../redux/apiRequest";
 import { useDispatch } from "react-redux";
+import NavbarMenu from "../../components/navbar/NavbarMenu";
+import MailList from "../../components/mailList/MailList";
+import Footer from "../../components/footer/Footer";
 
 const SigninForm = () => {
   const [username, setUsername] = useState("");
@@ -23,58 +26,65 @@ const SigninForm = () => {
   };
 
   return (
-    <div className="signin-form-container">
-      <h1 className="form-title">Login Form</h1>
-      <form className="signin-form" onSubmit={handleSignin}>
-        <div className="form-group">
-          <label className="label_username" htmlFor="username">
-            Username
-          </label>
-          <input
-            type="text"
-            id="username"
-            name="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            placeholder="Username"
-          />
-          {/* {usernameError && (
+    <>
+      <NavbarMenu />
+      <div className="signin-form-container">
+        <form className="signin-form" onSubmit={handleSignin}>
+          <h1 className="form-title">Login user</h1>
+          <div className="form-group">
+            <label className="label" htmlFor="username">
+              Username
+            </label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              placeholder="Username"
+            />
+            {/* {usernameError && (
             <span className="error-message">{usernameError}</span>
           )} */}
 
-          <label htmlFor="password" className="label_password">
-            Password
-          </label>
-          <input
-            className="input_password"
-            type="password"
-            id="password"
-            placeholder="password"
-            name="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
+            <label htmlFor="password" className="label">
+              Password
+            </label>
+            <input
+              className="input_password"
+              type="password"
+              id="password"
+              placeholder="password"
+              name="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
 
-          <button className="btn_submit" type="submit" onClick={handleSignin}>
-            Sign In
-          </button>
-
-          <span>
-            Not have account,
-            <button className="btn_create" onClick={() => navigate("/signup")}>
-              create here
+            <button className="btn_submit" type="submit" onClick={handleSignin}>
+              Sign In
             </button>
-          </span>
 
-          {/* {error && (
+            <span>
+              Not have account,
+              <button
+                className="btn_create"
+                onClick={() => navigate("/signup")}
+              >
+                create here
+              </button>
+            </span>
+
+            {/* {error && (
             <span className="error">
               {error.response.data.message}
             </span>
           )} */}
-        </div>
-      </form>
-    </div>
+          </div>
+        </form>
+      </div>
+      <MailList />
+    </>
   );
 };
 

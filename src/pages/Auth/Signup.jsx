@@ -4,6 +4,8 @@ import "./signup.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Alert } from "@mui/material";
+import NavbarMenu from "../../components/navbar/NavbarMenu";
+import MailList from "../../components/mailList/MailList";
 
 const SignupForm = () => {
   const [email, setEmail] = useState("");
@@ -100,100 +102,110 @@ const SignupForm = () => {
 
   return (
     <>
-       {successMessage && (
-        <Alert severity="success" onClose={() => setSuccessMessage("")}  sx={{
-          padding: "10px",
-          display: "flex",
-          alignItems: "center",
-        }}>
+      <NavbarMenu />
+      {successMessage && (
+        <Alert
+          severity="success"
+          onClose={() => setSuccessMessage("")}
+          sx={{
+            padding: "10px",
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
           {successMessage}
         </Alert>
       )}
       {errorMessage && (
-        <Alert severity="error" onClose={() => setErrorMessage("")} sx={{ marginBottom: "10px" }}>
+        <Alert
+          severity="error"
+          onClose={() => setErrorMessage("")}
+          sx={{ marginBottom: "10px" }}
+        >
           {errorMessage}
         </Alert>
       )}
-    <section className="signup-form-container">
-       <h2 className="form-title">Create an Account</h2>
-      <form className="signup-form" onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label className="label" htmlFor="name">
-            Username
-          </label>
-          <input
-            className="input"
-            type="text"
-            id="username"
-            name="username"
-            value={username}
-            onChange={handleUsernameChange} // Gọi hàm handleUsernameChange
-            placeholder="Username"
-          />
-          {usernameError && (
-            <span className="error-message">{usernameError}</span>
-          )}
-        </div>
+      <section className="signup-form-container">
+        <form className="signup-form" onSubmit={handleSubmit}>
+          <h2 className="form-title">Create an Account</h2>
+          <div className="form-group">
+            <label className="label" htmlFor="name">
+              Username
+            </label>
+            <input
+              className="input"
+              type="text"
+              id="username"
+              name="username"
+              value={username}
+              onChange={handleUsernameChange} // Gọi hàm handleUsernameChange
+              placeholder="Username"
+            />
+            {usernameError && (
+              <span className="error-message">{usernameError}</span>
+            )}
+          </div>
 
-        <div className="form-group">
-          <label className="label" htmlFor="email">
-            Email address
-          </label>
-          <input
-            className="input"
-            type="email"
-            id="email"
-            name="email"
-            value={email}
-            onChange={handleEmailChange}
-            placeholder="Enter your email"
-          />
-          {emailError && <span className="error-message">{emailError}</span>}
-        </div>
+          <div className="form-group">
+            <label className="label" htmlFor="email">
+              Email address
+            </label>
+            <input
+              className="input"
+              type="email"
+              id="email"
+              name="email"
+              value={email}
+              onChange={handleEmailChange}
+              placeholder="Enter your email"
+            />
+            {emailError && <span className="error-message">{emailError}</span>}
+          </div>
 
-        <div className="form-group">
-          <label className="label" htmlFor="password">
-            Password
-          </label>
-          <input
-            className="input"
-            type="password"
-            id="password"
-            name="password"
-            value={password}
-            onChange={handlePasswordChange}
-            placeholder="Enter your password"
-          />
-          {passwordError && (
-            <span className="error-message">{passwordError}</span>
-          )}
-        </div>
+          <div className="form-group">
+            <label className="label" htmlFor="password">
+              Password
+            </label>
+            <input
+              className="input"
+              type="password"
+              id="password"
+              name="password"
+              value={password}
+              onChange={handlePasswordChange}
+              placeholder="Enter your password"
+            />
+            {passwordError && (
+              <span className="error-message">{passwordError}</span>
+            )}
+          </div>
 
-        <div className="form-group">
-          <label className="label" htmlFor="confirmedpassword">
-            Confirm Password
-          </label>
-          <input
-            className="input"
-            type="password"
-            id="confirmedpassword"
-            name="confirmedpassword"
-            value={confirmedPassword}
-            onChange={handleConfirmedPasswordChange}
-            placeholder="Confirm your password"
-          />
-          {password !== confirmedPassword && (
-            <span className="error-message">
-              Password and confirmed password do not match
-            </span>
-          )}
-        </div>
+          <div className="form-group">
+            <label className="label" htmlFor="confirmedpassword">
+              Confirm Password
+            </label>
+            <input
+              className="input"
+              type="password"
+              id="confirmedpassword"
+              name="confirmedpassword"
+              value={confirmedPassword}
+              onChange={handleConfirmedPasswordChange}
+              placeholder="Confirm your password"
+            />
+            {password !== confirmedPassword && (
+              <span className="error-message">
+                Password and confirmed password do not match
+              </span>
+            )}
+          </div>
 
-        <button type="submit" className="submit-btn" onClick={handleSubmit}>
-          Create Account
-        </button>
-      </form>
-    </section>
+          <button type="submit" className="submit-btn" onClick={handleSubmit}>
+            Create Account
+          </button>
+        </form>
+      </section>{" "}
+      <MailList />
     </>
   );
 };
