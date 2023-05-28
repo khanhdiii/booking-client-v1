@@ -16,7 +16,7 @@
   background-color: #febb02;
   padding: 10px;
   border-radius: 10px;
-  position: sticky;
+  /* position: sticky; */
   top: 10px;
   height: max-content;
 }
@@ -114,4 +114,46 @@
   border-width: 6px;
   border-style: solid;
   border-color: #000 transparent transparent transparent;
+}
+
+@media (max-width: 576px) {
+  .listWrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .listSearch {
+    max-width: 540px;
+    width: 70%;
+    justify-content: center;
+    align-items: center;
+  }
+  .itemDate {
+    height: 40px;
+  }
+  .searchItem {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .siImg {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .listWrapper {
+    display: flex;
+    flex-direction: column;
+  }
+  .listSearch {
+    max-width: 730px;
+    width: 75%;
+    justify-content: center !important;
+    align-items: center !important;
+    margin-left: 30px;
+    margin: 0 auto;
+  }
 }

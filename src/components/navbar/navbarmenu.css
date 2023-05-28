@@ -81,3 +81,9 @@ button.navbar-toggler {
   background-color: #fff !important;
   color: #fff !important;
 }
+
+@media (max-width: 320px) {
+  .navMenuWrapper {
+    width: 100%;
+  }
+}

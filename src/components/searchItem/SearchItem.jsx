@@ -36,11 +36,10 @@ const SearchItem = (props) => {
         <div className="siDetailTexts">
           <span className="siPrice">${item.cheapestPrice}</span>
           <span className="siTaxOp">Includes taxes and fees</span>
-
-          <button className="siCheckButton">
-            <Link to={`/hotels/${item._id}`}>See details</Link>
-          </button>
         </div>
+        <button className="siCheckButton">
+          <Link to={`/hotels/${item._id}`}>See details</Link>
+        </button>
       </div>
     </div>
   );

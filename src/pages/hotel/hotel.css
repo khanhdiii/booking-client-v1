@@ -109,7 +109,7 @@
   border-radius: 5px;
 }
 
-.slider{
+.slider {
   position: sticky;
   top: 0;
   left: 0;
@@ -121,7 +121,7 @@
   align-items: center;
 }
 
-.sliderWrapper{
+.sliderWrapper {
   width: 100%;
   height: 100%;
   display: flex;
@@ -129,12 +129,12 @@
   align-items: center;
 }
 
-.sliderImg{
+.sliderImg {
   width: 80%;
   height: 80vh;
 }
 
-.close{
+.close {
   position: absolute;
   top: 20px;
   right: 20px;
@@ -143,9 +143,127 @@
   cursor: pointer;
 }
 
-.arrow{
+.arrow {
   margin: 20px;
   font-size: 50px;
   color: lightgray;
   cursor: pointer;
+}
+/*  (điện thoại di động, hiển thị chiều dọc) */
+@media (max-width: 320px) {
+  .hotelWrapper {
+    width: 85%;
+  }
+  .bookNow {
+    display: none;
+  }
+
+  .css-1a99rji {
+    width: 150px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+  }
+  .css-10riir9-MuiImageList-root {
+    column-count: 1 !important;
+  }
+  .hotelDetails {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+  }
+  .hotelDetailsPrice {
+    width: 95%;
+    height: 30%;
+    margin: 0 auto;
+  }
+}
+/* (máy tính bảng, hiển thị chiều dọc) */
+@media (max-width: 600px) {
+  .hotelWrapper {
+    width: 90%;
+  }
+  .bookNow {
+    display: none;
+  }
+  .css-1a99rji {
+    max-width: 500px;
+    height: 600px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+  }
+  .css-10riir9-MuiImageList-root {
+    column-count: 2 !important;
+  }
+  .hotelDetailsTexts {
+    margin-top: 30px;
+  }
+  .hotelDetails {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+  }
+  .hotelDetailsPrice {
+    width: 95%;
+    height: 30%;
+    margin: 0 auto;
+  }
+}
+@media (max-width: 768px) {
+  .hotelWrapper {
+    width: 85%;
+  }
+  .bookNow {
+    display: none;
+  }
+  .css-10riir9-MuiImageList-root {
+    column-count: 2 !important;
+  }
+  .css-1a99rji {
+    max-width: 650px;
+    height: 700px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+  }
+  .hotelDetailsTexts {
+    margin-top: 30px;
+  }
+  .hotelDetails {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+  }
+  .hotelDetailsPrice {
+    width: 95%;
+    height: 30%;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 1024px) {
+  .hotelWrapper {
+    width: 90%;
+  }
+  .css-1a99rji {
+    max-width: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+  }
+}
+@media (max-width: 1025px) {
+  .css-1a99rji {
+    width: 1024px;
+    height: 100%;
+    margin: 0 auto;
+  }
 }

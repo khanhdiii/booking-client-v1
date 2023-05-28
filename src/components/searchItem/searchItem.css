@@ -12,6 +12,7 @@
   width: 200px;
   height: 200px;
   object-fit: cover;
+  border-radius: 5px;
 }
 
 .siDesc {
@@ -114,4 +115,17 @@
 .siCheckButton a {
   color: #fff;
   text-decoration: none;
+}
+
+@media (max-width: 576px) {
+  .siImg {
+    width: 300px;
+    height: 300px;
+  }
+  .siDetails {
+    width: 80%;
+  }
+}
+
+@media (max-width: 768px) {
 }
